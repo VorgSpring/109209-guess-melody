@@ -1,0 +1,46 @@
+{
+  "name": "109209-guess-melody",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Личный проект «Угадай мелодию» от HTML Academy",
+  "author": "Сергей Павлов",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:htmlacademy-ecmascript/109209-guess-melody.git"
+  },
+  "bugs": {
+    "url": "https://github.com/htmlacademy-ecmascript/109209-guess-melody/issues"
+  },
+  "homepage": "https://github.com/htmlacademy-ecmascript/109209-guess-melody",
+  "babel": {
+    "presets": [
+      "es2015"
+    ]
+  },
+  "main": "index.js",
+  "scripts": {
+    "eslint": "eslint js/",
+    "build": "gulp build",
+    "start": "gulp serve",
+    "test": "npm run eslint && gulp test"
+  },
+  "devDependencies": {
+    "autoprefixer": "6.5.1",
+    "babel-eslint": "7.1.0",
+    "browser-sync": "2.17.5",
+    "css-mqpacker": "5.0.1",
+    "eslint": "3.9.0",
+    "eslint-config-htmlacademy": "0.1.x",
+    "gulp": "3.9.1",
+    "gulp-csso": "2.0.0",
+    "gulp-imagemin": "3.1.0",
+    "gulp-plumber": "1.1.0",
+    "gulp-postcss": "6.2.0",
+    "gulp-rename": "1.2.2",
+    "gulp-sass": "2.3.2",
+    "gulp-sourcemaps": "2.2.0"
+  },
+  "engines": {
+    "node": "6.7.0"
+  }
+}

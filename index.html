@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Угадай мелодию</title>
+  <link href="https://fonts.googleapis.com/css?family=Fira+Sans:300,300i,400,500i,700i&amp;subset=cyrillic" rel="stylesheet">
+  <link href="css/style.css" rel="stylesheet">
+  <style>
+    .player {
+      height: 55px;
+      position: relative;
+      width: 300px;;
+    }
+
+    .player-track {
+      bottom: 0;
+      display: block;
+      left: 60px;
+      position: absolute;
+      right: 0;
+      top: 0;
+    }
+
+    .player--no-controls button {
+      display: none;
+    }
+
+    .player--no-controls .player-track {
+      left: 0;
+    }
+
+    .player--is-playing button {
+      background: red;
+    }
+
+    .player-status {
+      background: rgba(0, 0, 0, 0.3);
+      bottom: 0;
+      color: #fff;
+      left: 0;
+      position: absolute;
+      top: 0;
+    }
+  </style>
+</head>
+<body>
+
+<svg xmlns="http://www.w3.org/2000/svg" style="position: absolute; left: -1200em;">
+  <filter id="blur">
+    <feGaussianBlur in="SourceGraphic" stdDeviation="5"></feGaussianBlur>
+    <feOffset dx="0" dy="0"></feOffset>
+    <feMerge>
+      <feMergeNode></feMergeNode>
+      <feMergeNode in="SourceGraphic"></feMergeNode>
+    </feMerge>
+  </filter>
+</svg>
+
+<div class="app">
+  <section class="main"></section>
+
+  <section class="copyright">
+    Сделано в <a class="copyright-link" href="https://htmlacademy.ru" target="_blank">HTML Academy</a>
+  </section>
+</div>
+
+<template id="templates">
+  <!-- Игра на выбор жанра -->
+  <section class="main main--level main--level-genre">
+    <h2 class="title">Выберите инди-рок треки</h2>
+    <form class="genre">
+      <div class="genre-answer">
+        <div class="player-wrapper"></div>
+        <input type="checkbox" name="answer" value="answer-1" id="a-1">
+        <label class="genre-answer-check" for="a-1"></label>
+      </div>
+
+      <div class="genre-answer">
+        <div class="player-wrapper"></div>
+        <input type="checkbox" name="answer" value="answer-1" id="a-2">
+        <label class="genre-answer-check" for="a-2"></label>
+      </div>
+
+      <div class="genre-answer">
+        <div class="player-wrapper"></div>
+        <input type="checkbox" name="answer" value="answer-1" id="a-3">
+        <label class="genre-answer-check" for="a-3"></label>
+      </div>
+
+      <div class="genre-answer">
+        <div class="player-wrapper"></div>
+        <input type="checkbox" name="answer" value="answer-1" id="a-4">
+        <label class="genre-answer-check" for="a-4"></label>
+      </div>
+
+      <button class="genre-answer-send" type="submit">Ответить</button>
+    </form>
+  </section>
+
+  <!-- Проигрыватель -->
+  <div class="player">
+    <audio></audio>
+    <button class="player-control">Play</button>
+    <div class="player-track">
+      <span class="player-status"></span>
+    </div>
+  </div>
+
+  <!-- Результат игры с выбором исполнителя -->
+  <section class="main main--result">
+    <section class="logo" title="Угадай мелодию"><h1>Угадай мелодию</h1></section>
+
+    <h2 class="title">Вы настоящий меломан!</h2>
+    <div class="main-stat">За&nbsp;2&nbsp;минуты<br>вы&nbsp;отгадали 4&nbsp;мелодии</div>
+    <span class="main-comparison">Это&nbsp;лучше чем у&nbsp;80%&nbsp;игроков</span>
+    <span role="button" tabindex="0" class="main-replay">Сыграть ещё раз</span>
+  </section>
+
+  <!-- Выбор исполнителя: уровень -->
+  <section class="main main--level main--level-artist">
+    <svg xmlns="http://www.w3.org/2000/svg" class="timer" viewBox="0 0 780 780">
+      <circle
+        cx="390" cy="390" r="370"
+        class="timer-line"
+        style="filter: url(.#blur); transform: rotate(-90deg) scaleY(-1); transform-origin: center"></circle>
+
+      <div class="timer-value" xmlns="http://www.w3.org/1999/xhtml">
+        <span class="timer-value-mins">02</span><!--
+        --><span class="timer-value-dots">:</span><!--
+        --><span class="timer-value-secs">00</span>
+      </div>
+    </svg>
+
+    <div class="main-wrap">
+      <div class="main-timer"></div>
+
+      <h2 class="title main-title">Кто исполняет эту песню?</h2>
+      <div class="player-wrapper"></div>
+      <form class="main-list">
+        <div class="main-answer-wrapper">
+          <input class="main-answer-r" type="radio" id="answer-1" name="answer" value="val-1" />
+          <label class="main-answer" for="answer-1">
+            <img class="main-answer-preview" src="">
+            Пелагея
+          </label>
+        </div>
+
+        <div class="main-answer-wrapper">
+          <input class="main-answer-r" type="radio" id="answer-2" name="answer" value="val-1" />
+          <label class="main-answer" for="answer-2">
+            <img class="main-answer-preview" src="">
+            Краснознаменная дивизия имени моей бабушки
+          </label>
+        </div>
+
+        <div class="main-answer-wrapper">
+          <input class="main-answer-r" type="radio" id="answer-2" name="answer" value="val-1" />
+          <label class="main-answer" for="answer-2">
+            <img class="main-answer-preview" src="">
+            Lorde
+          </label>
+        </div>
+      </form>
+    </div>
+  </section>
+
+  <!-- Приветствие -->
+  <section class="main main--welcome">
+    <section class="logo" title="Угадай мелодию"><h1>Угадай мелодию</h1></section>
+    <button class="main-play">Начать игру</button>
+    <h2 class="title main-title">Правила игры</h2>
+    <p class="text main-text">
+      Правила просты&nbsp;— за&nbsp;2 минуты дать
+      максимальное количество правильных ответов.<br>
+      На&nbsp;каждую мелодию всего 3 варианта ответа.<br>
+      Удачи!
+    </p>
+  </section>
+</template>
+
+<script src="js/main.js"></script>
+
+</body>
+</html>

@@ -26,8 +26,10 @@
     evt.preventDefault();
 
     switch (evt.keyCode) {
-      case 37: current--; break;
-      case 39: current++; break;
+      case 37: current--;
+        break;
+      case 39: current++;
+        break;
     }
 
     select(current);

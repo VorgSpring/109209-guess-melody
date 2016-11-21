@@ -2,46 +2,9 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Угадай мелодию</title>
+  <title>Угадай Мелодию</title>
   <link href="https://fonts.googleapis.com/css?family=Fira+Sans:300,300i,400,500i,700i&amp;subset=cyrillic" rel="stylesheet">
   <link href="css/style.css" rel="stylesheet">
-  <style>
-    .player {
-      height: 55px;
-      position: relative;
-      width: 300px;;
-    }
-
-    .player-track {
-      bottom: 0;
-      display: block;
-      left: 60px;
-      position: absolute;
-      right: 0;
-      top: 0;
-    }
-
-    .player--no-controls button {
-      display: none;
-    }
-
-    .player--no-controls .player-track {
-      left: 0;
-    }
-
-    .player--is-playing button {
-      background: red;
-    }
-
-    .player-status {
-      background: rgba(0, 0, 0, 0.3);
-      bottom: 0;
-      color: #fff;
-      left: 0;
-      position: absolute;
-      top: 0;
-    }
-  </style>
 </head>
 <body>
 
@@ -178,6 +141,10 @@
   </section>
 </template>
 
+<script src="js/animate.js"></script>
+<script src="js/time-format.js"></script>
+<script src="js/timer.js"></script>
+<script src="js/player.js"></script>
 <script src="js/main.js"></script>
 
 </body>

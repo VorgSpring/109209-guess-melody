@@ -83,7 +83,7 @@ gulp.task('copy', ['copy-html', 'scripts', 'style'], function () {
 });
 
 gulp.task('clean', function () {
-  return del(['build/**', '!build'],{force:true});
+  return del('build');
 });
 
 gulp.task('serve', ['assemble'], function () {
@@ -96,7 +96,11 @@ gulp.task('serve', ['assemble'], function () {
   });
 
   gulp.watch('sass/**/*.{scss,sass}', ['style']);
-  gulp.watch('*.html', ['copy-html']);
+  gulp.watch('*.html').on('change', (e) => {
+    if (e.type !== 'deleted') {
+      gulp.start('copy-html');
+    }
+  });
   gulp.watch('js/**/*.js', ['scripts']).on('change', server.reload);
 });
 

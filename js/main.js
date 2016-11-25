@@ -1,18 +1,14 @@
+import {welcomeModule} from './elements/welcome';
+import {artistModule} from './elements/artist';
+import {genreModule} from './elements/genre';
+import {resultModule} from './elements/result';
+
 (function () {
-
-  let template = document.querySelector('template');
-
-  let loadTemplate = (templateName) => {
-    let content = template.content ? template.content : template;
-    return content.querySelector(templateName).cloneNode(true);
-  };
-
-
   let slides = [
-    loadTemplate('.main--welcome'),
-    loadTemplate('.main--level-artist'),
-    loadTemplate('.main--level-genre'),
-    loadTemplate('.main--result')
+    welcomeModule,
+    artistModule,
+    genreModule,
+    resultModule
   ];
   let current = -1;
 

@@ -1,6 +1,6 @@
-import {getElementFromTemplate} from './getElement';
+import getElementFromTemplate from './getElement';
 
-let artistMarkup =
+const artistMarkup =
   `<section class="main main--level main--level-artist">
     <svg xmlns="http://www.w3.org/2000/svg" class="timer" viewBox="0 0 780 780">
       <circle

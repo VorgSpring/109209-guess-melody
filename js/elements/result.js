@@ -1,6 +1,6 @@
-import {getElementFromTemplate} from './getElement';
+import getElementFromTemplate from './getElement';
 
-let resultMarkup =
+const resultMarkup =
   `<section class="main main--result">
     <section class="logo" title="Угадай мелодию"><h1>Угадай мелодию</h1></section>
 

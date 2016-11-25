@@ -1,6 +1,6 @@
-import {getElementFromTemplate} from './getElement';
+import getElementFromTemplate from './getElement';
 
-let welcomeMarkup =
+const welcomeMarkup =
   `<section class="main main--welcome">
     <section class="logo" title="Угадай мелодию"><h1>Угадай мелодию</h1></section>
     <button class="main-play">Начать игру</button>

@@ -1,6 +1,6 @@
-import {getElementFromTemplate} from './getElement';
+import getElementFromTemplate from './getElement';
 
-let genreMarkup =
+const genreMarkup =
   `<section class="main main--level main--level-genre">
     <h2 class="title">Выберите инди-рок треки</h2>
     <form class="genre">

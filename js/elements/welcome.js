@@ -1,5 +1,3 @@
-'use strict';
-
 import {getElementFromTemplate} from './getElement';
 
 let welcomeMarkup =

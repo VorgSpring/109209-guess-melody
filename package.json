@@ -43,7 +43,8 @@
     "gulp-sass": "2.3.2",
     "gulp-sourcemaps": "2.2.0",
     "gulp-webpack": "1.5.0",
-    "path": "^0.12.7"
+    "path": "^0.12.7",
+    "vinyl-named": "^1.1.0"
   },
   "engines": {
     "node": "6.7.0"

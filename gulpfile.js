@@ -13,6 +13,8 @@ const rename = require('gulp-rename');
 const imagemin = require('gulp-imagemin');
 const sourcemaps = require('gulp-sourcemaps');
 const webpack = require('gulp-webpack');
+const named = require('vinyl-named');
+const path = require('path');
 
 gulp.task('style', function () {
   gulp.src('sass/style.scss')
@@ -38,18 +40,21 @@ gulp.task('style', function () {
 });
 
 gulp.task('scripts', function () {
-  return gulp.src('js/main.js')
+  return gulp.src('js/*.js')
     .pipe(plumber())
+    .pipe(named())
     .pipe(webpack({
       devtool: 'source-map',
       module:  {
         loaders: [{
           test:    /\.js$/,
+          include: path.join(__dirname, './'),
           loader:  'babel?presets[]=es2015'
         }]
       },
-      output: {
-        filename: 'main.js'
+      resolve: {
+        extensions: ['', '.js'],
+        root: path.resolve('./js')
       }
     }))
     .pipe(gulp.dest('build/js/'));

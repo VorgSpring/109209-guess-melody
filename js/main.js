@@ -1,7 +1,7 @@
-import {welcomeModule} from './elements/welcome';
-import {artistModule} from './elements/artist';
-import {genreModule} from './elements/genre';
-import {resultModule} from './elements/result';
+import {welcomeModule} from 'elements/welcome';
+import {artistModule} from 'elements/artist';
+import {genreModule} from 'elements/genre';
+import {resultModule} from 'elements/result';
 
 (function () {
   let slides = [

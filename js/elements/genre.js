@@ -1,4 +1,4 @@
-import getElementFromTemplate from './getElement';
+import getElementFromTemplate from 'elements/getElement';
 
 const genreMarkup =
   `<section class="main main--level main--level-genre">

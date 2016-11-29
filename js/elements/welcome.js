@@ -1,4 +1,4 @@
-import getElementFromTemplate from './getElement';
+import getElementFromTemplate from 'elements/getElement';
 
 const welcomeMarkup =
   `<section class="main main--welcome">

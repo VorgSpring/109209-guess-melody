@@ -1,4 +1,6 @@
 import getElementFromTemplate from 'elements/getElement';
+import render from 'elements/render';
+import welcomeModule from 'elements/welcome';
 
 const resultMarkup =
   `<section class="main main--result">
@@ -10,4 +12,9 @@ const resultMarkup =
     <span role="button" tabindex="0" class="main-replay">Сыграть ещё раз</span>
   </section>`;
 
-export const resultModule = getElementFromTemplate(resultMarkup);
+const resultMarkupNode = getElementFromTemplate(resultMarkup);
+
+let buttonReset = resultMarkupNode.querySelector('.main-replay');
+buttonReset.addEventListener('click', () => render(welcomeModule));
+
+export default resultMarkupNode;

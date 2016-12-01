@@ -1,7 +1,7 @@
-import renderPage from 'render/renderPage';
-import {welcomeModule} from 'elements/welcome';
+import render from 'elements/render';
+import welcomeModule from 'elements/welcome';
 
 (function () {
-  renderPage(welcomeModule);
+  render(welcomeModule);
 })();
 

@@ -1,4 +1,6 @@
 import getElementFromTemplate from 'elements/getElement';
+import render from 'elements/render';
+import genreModule from 'elements/genre';
 
 const artistMarkup =
   `<section class="main main--level main--level-artist">
@@ -48,4 +50,19 @@ const artistMarkup =
     </div>
   </section>`;
 
-export const artistModule = getElementFromTemplate(artistMarkup);
+const artistMarkupNode = getElementFromTemplate(artistMarkup);
+
+const mainWrap = artistMarkupNode.querySelector('.main-list');
+
+mainWrap.addEventListener('click', (event) => {
+  let target = event.target;
+  while (target != mainWrap) {
+    if (target.tagName == 'LABEL') {
+      render(genreModule);
+      return;
+    }
+    target = target.parentNode;
+  }
+});
+
+export default artistMarkupNode;

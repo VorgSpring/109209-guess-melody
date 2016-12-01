@@ -56,8 +56,8 @@ const mainWrap = artistMarkupNode.querySelector('.main-list');
 
 mainWrap.addEventListener('click', (event) => {
   let target = event.target;
-  while (target != mainWrap) {
-    if (target.tagName == 'LABEL') {
+  while (target !== mainWrap) {
+    if (target.tagName === 'LABEL') {
       render(genreModule);
       return;
     }

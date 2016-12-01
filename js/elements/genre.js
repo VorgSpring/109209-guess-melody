@@ -34,9 +34,9 @@ const genreMarkup =
     </form>
   </section>`;
 
-const genreMarkupNode = getElementFromTemplate(genreMarkup),
-  genreForm = genreMarkupNode.querySelector('.genre'),
-  genreFormButton = genreForm.querySelector('.genre-answer-send');
+const genreMarkupNode = getElementFromTemplate(genreMarkup);
+const genreForm = genreMarkupNode.querySelector('.genre');
+const genreFormButton = genreForm.querySelector('.genre-answer-send');
 
 genreForm.addEventListener('change', () => {
   let genreCheckboxsChecked = genreMarkupNode.querySelectorAll('input[type="checkbox"]:checked');

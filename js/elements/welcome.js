@@ -1,6 +1,5 @@
 import getElementFromTemplate from 'elements/getElement';
 import render from 'elements/render';
-import artistModule from 'elements/artist';
 
 const welcomeMarkup =
   `<section class="main main--welcome">
@@ -15,10 +14,10 @@ const welcomeMarkup =
     </p>
   </section>`;
 
-const welcomeMarkupNode = getElementFromTemplate(welcomeMarkup);
+const element = getElementFromTemplate(welcomeMarkup);
 
-let buttonPlay = welcomeMarkupNode.querySelector('.main-play');
-buttonPlay.addEventListener('click', () => render(artistModule));
+let buttonPlay = element.querySelector('.main-play');
+buttonPlay.addEventListener('click', () => render('artist'));
 
-export default welcomeMarkupNode;
+export default element;
 

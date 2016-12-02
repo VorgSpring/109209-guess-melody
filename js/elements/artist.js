@@ -1,6 +1,5 @@
 import getElementFromTemplate from 'elements/getElement';
 import render from 'elements/render';
-import genreModule from 'elements/genre';
 
 const artistMarkup =
   `<section class="main main--level main--level-artist">
@@ -50,19 +49,14 @@ const artistMarkup =
     </div>
   </section>`;
 
-const artistMarkupNode = getElementFromTemplate(artistMarkup);
+const element = getElementFromTemplate(artistMarkup);
 
-const mainWrap = artistMarkupNode.querySelector('.main-list');
+const mainWrap = element.querySelector('.main-list');
 
-mainWrap.addEventListener('click', (event) => {
-  let target = event.target;
-  while (target !== mainWrap) {
-    if (target.tagName === 'LABEL') {
-      render(genreModule);
-      return;
-    }
-    target = target.parentNode;
-  }
+mainWrap.addEventListener('change', () => {
+  let radioChecked = mainWrap.querySelectorAll('input[type="radio"]:checked');
+  if(radioChecked.length)
+    render('genre');
 });
 
-export default artistMarkupNode;
+export default element;

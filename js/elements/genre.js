@@ -1,6 +1,5 @@
 import getElementFromTemplate from 'elements/getElement';
 import render from 'elements/render';
-import resultModule from 'elements/result';
 
 const genreMarkup =
   `<section class="main main--level main--level-genre">
@@ -34,18 +33,18 @@ const genreMarkup =
     </form>
   </section>`;
 
-const genreMarkupNode = getElementFromTemplate(genreMarkup);
-const genreForm = genreMarkupNode.querySelector('.genre');
-const genreFormButton = genreForm.querySelector('.genre-answer-send');
+const element = getElementFromTemplate(genreMarkup);
+const form = element.querySelector('.genre');
+const formButton = form.querySelector('.genre-answer-send');
 
-genreForm.addEventListener('change', () => {
-  let genreCheckboxsChecked = genreMarkupNode.querySelectorAll('input[type="checkbox"]:checked');
-  genreFormButton.disabled = !genreCheckboxsChecked.length;
+form.addEventListener('change', () => {
+  let checkboxsChecked = element.querySelectorAll('input[type="checkbox"]:checked');
+  formButton.disabled = !checkboxsChecked.length;
 });
 
-genreForm.addEventListener('submit', (event) => {
+form.addEventListener('submit', (event) => {
   event.preventDefault();
-  render(resultModule);
+  render('result');
 });
 
-export default genreMarkupNode;
+export default element;

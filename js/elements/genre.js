@@ -1,4 +1,5 @@
 import getElementFromTemplate from 'elements/getElement';
+import render from 'elements/render';
 
 const genreMarkup =
   `<section class="main main--level main--level-genre">
@@ -28,8 +29,22 @@ const genreMarkup =
         <label class="genre-answer-check" for="a-4"></label>
       </div>
 
-      <button class="genre-answer-send" type="submit">Ответить</button>
+      <button class="genre-answer-send" type="submit" disabled>Ответить</button>
     </form>
   </section>`;
 
-export const genreModule = getElementFromTemplate(genreMarkup);
+const element = getElementFromTemplate(genreMarkup);
+const form = element.querySelector('.genre');
+const formButton = form.querySelector('.genre-answer-send');
+
+form.addEventListener('change', () => {
+  let checkboxsChecked = element.querySelectorAll('input[type="checkbox"]:checked');
+  formButton.disabled = !checkboxsChecked.length;
+});
+
+form.addEventListener('submit', (event) => {
+  event.preventDefault();
+  render('result');
+});
+
+export default element;

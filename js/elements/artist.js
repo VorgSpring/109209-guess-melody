@@ -1,4 +1,5 @@
 import getElementFromTemplate from 'elements/getElement';
+import render from 'elements/render';
 
 const artistMarkup =
   `<section class="main main--level main--level-artist">
@@ -48,4 +49,15 @@ const artistMarkup =
     </div>
   </section>`;
 
-export const artistModule = getElementFromTemplate(artistMarkup);
+const element = getElementFromTemplate(artistMarkup);
+
+const mainWrap = element.querySelector('.main-list');
+
+mainWrap.addEventListener('change', () => {
+  let radioChecked = mainWrap.querySelectorAll('input[type="radio"]:checked');
+  if (radioChecked.length) {
+    render('genre');
+  }
+});
+
+export default element;

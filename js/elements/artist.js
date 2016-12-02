@@ -55,7 +55,7 @@ const mainWrap = element.querySelector('.main-list');
 
 mainWrap.addEventListener('change', () => {
   let radioChecked = mainWrap.querySelectorAll('input[type="radio"]:checked');
-  if(radioChecked.length) {
+  if (radioChecked.length) {
     render('genre');
   }
 });

@@ -32,7 +32,7 @@ const answers = content.answers.reduce((result, answer) => {
         <img class="main-answer-preview" src="">
         ${answer.name}
       </label>
-    </div>`
+    </div>`;
 }, '');
 
 const artistMarkup =

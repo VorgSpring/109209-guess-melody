@@ -32,7 +32,7 @@ const answers = content.answers.reduce((result, answer) => {
       <div class="player-wrapper"></div>
       <input type="checkbox" name="answer" value=${answer.value} id=${answer.id}>
       <label class="genre-answer-check" for=${answer.id}></label>
-    </div>`
+    </div>`;
 }, '');
 
 const button = `<button class="genre-answer-send" type="submit" disabled>${content.formButton}</button>`;

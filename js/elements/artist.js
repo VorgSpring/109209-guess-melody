@@ -24,16 +24,18 @@ const content = {
 
 const title = `<h2 class="title main-title">${content.title}</h2>`;
 
-const answers = content.answers.reduce((result, answer) => {
-  return result +
-    `<div class="main-answer-wrapper">
-      <input class="main-answer-r" type="radio" id=${answer.id} name="answer" value=${answer.value} />
-      <label class="main-answer" for=${answer.id}>
-        <img class="main-answer-preview" src="">
-        ${answer.name}
-      </label>
-    </div>`;
-}, '');
+const answers = (content) => {
+  return content.reduce((result, answer) => {
+    return result +
+      `<div class="main-answer-wrapper">
+		  <input class="main-answer-r" type="radio" id=${answer.id} name="answer" value=${answer.value} />
+		  <label class="main-answer" for=${answer.id}>
+			<img class="main-answer-preview" src="">
+			${answer.name}
+		  </label>
+		</div>`;
+  }, '');
+};
 
 const artistMarkup =
   `<section class="main main--level main--level-artist">
@@ -55,7 +57,7 @@ const artistMarkup =
         ${title}
       <div class="player-wrapper"></div>
       <form class="main-list">
-        ${answers}
+        ${answers(content.answers)}
       </form>
     </div>
   </section>`;

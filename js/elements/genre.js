@@ -26,14 +26,16 @@ const content = {
 
 const title = `<h2 class="title">${content.title}</h2>`;
 
-const answers = content.answers.reduce((result, answer) => {
-  return result +
-    `<div class="genre-answer">
+const answers = (content) => {
+  return content.reduce((result, answer) => {
+    return result +
+      `<div class="genre-answer">
       <div class="player-wrapper"></div>
       <input type="checkbox" name="answer" value=${answer.value} id=${answer.id}>
       <label class="genre-answer-check" for=${answer.id}></label>
     </div>`;
-}, '');
+  }, '');
+};
 
 const button = `<button class="genre-answer-send" type="submit" disabled>${content.formButton}</button>`;
 
@@ -41,7 +43,7 @@ const genreMarkup =
   `<section class="main main--level main--level-genre">
     ${title}
     <form class="genre">
-      ${answers}
+      ${answers(content.answers)}
       ${button}
     </form>
   </section>`;

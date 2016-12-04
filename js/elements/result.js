@@ -23,10 +23,10 @@ export default (content) => {
 
   const resultMarkup =
     `<section class="main main--result">
-    ${title}
-    ${result}
-    ${button}
-  </section>`;
+      ${title}
+      ${result}
+      ${button}
+    </section>`;
 
   const element = getElementFromTemplate(resultMarkup);
 

@@ -21,14 +21,14 @@ export default (content) => {
 
   const rules =
     `<h2 class="title main-title">${content.rules.title}</h2>
-   <p class="text main-text">${content.rules.text}</p>`;
+     <p class="text main-text">${content.rules.text}</p>`;
 
   const welcomeMarkup =
     `<section class="main main--welcome">
-    ${title}
-    ${button}
-    ${rules}
-  </section>`;
+      ${title}
+      ${button}
+      ${rules}
+    </section>`;
 
   const element = getElementFromTemplate(welcomeMarkup);
 

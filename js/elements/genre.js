@@ -26,13 +26,13 @@ const content = {
 
 const title = `<h2 class="title">${content.title}</h2>`;
 
-const answers = (content) => {
-  return content.reduce((result, answer) => {
+const answers = (items) => {
+  return items.reduce((result, item) => {
     return result +
       `<div class="genre-answer">
       <div class="player-wrapper"></div>
-      <input type="checkbox" name="answer" value=${answer.value} id=${answer.id}>
-      <label class="genre-answer-check" for=${answer.id}></label>
+      <input type="checkbox" name="answer" value=${item.value} id=${item.id}>
+      <label class="genre-answer-check" for=${item.id}></label>
     </div>`;
   }, '');
 };

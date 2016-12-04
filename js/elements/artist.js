@@ -24,14 +24,14 @@ const content = {
 
 const title = `<h2 class="title main-title">${content.title}</h2>`;
 
-const answers = (content) => {
-  return content.reduce((result, answer) => {
+const answers = (items) => {
+  return items.reduce((result, item) => {
     return result +
       `<div class="main-answer-wrapper">
-		  <input class="main-answer-r" type="radio" id=${answer.id} name="answer" value=${answer.value} />
-		  <label class="main-answer" for=${answer.id}>
+		  <input class="main-answer-r" type="radio" id=${item.id} name="answer" value=${item.value} />
+		  <label class="main-answer" for=${item.id}>
 			<img class="main-answer-preview" src="">
-			${answer.name}
+			${item.name}
 		  </label>
 		</div>`;
   }, '');

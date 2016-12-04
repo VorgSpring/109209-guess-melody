@@ -1,7 +1,7 @@
 import getElementFromTemplate from 'elements/getElement';
 import render from 'elements/render';
 
-const content = {
+const genre = {
   title: 'Выберите инди-рок треки',
   answers: [
     {
@@ -24,23 +24,25 @@ const content = {
   formButton: 'Ответить'
 };
 
-const title = `<h2 class="title">${content.title}</h2>`;
+export default (content) => {
 
-const answers = (items) => {
-  return items.reduce((result, item) => {
-    return result +
-      `<div class="genre-answer">
+  const title = `<h2 class="title">${content.title}</h2>`;
+
+  const answers = (items) => {
+    return items.reduce((result, item) => {
+      return result +
+        `<div class="genre-answer">
       <div class="player-wrapper"></div>
       <input type="checkbox" name="answer" value=${item.value} id=${item.id}>
       <label class="genre-answer-check" for=${item.id}></label>
     </div>`;
-  }, '');
-};
+    }, '');
+  };
 
-const button = `<button class="genre-answer-send" type="submit" disabled>${content.formButton}</button>`;
+  const button = `<button class="genre-answer-send" type="submit" disabled>${content.formButton}</button>`;
 
-const genreMarkup =
-  `<section class="main main--level main--level-genre">
+  const genreMarkup =
+    `<section class="main main--level main--level-genre">
     ${title}
     <form class="genre">
       ${answers(content.answers)}
@@ -48,18 +50,19 @@ const genreMarkup =
     </form>
   </section>`;
 
-const element = getElementFromTemplate(genreMarkup);
-const form = element.querySelector('.genre');
-const formButton = form.querySelector('.genre-answer-send');
+  const element = getElementFromTemplate(genreMarkup);
+  const form = element.querySelector('.genre');
+  const formButton = form.querySelector('.genre-answer-send');
 
-form.addEventListener('change', () => {
-  let checkboxsChecked = element.querySelectorAll('input[type="checkbox"]:checked');
-  formButton.disabled = !checkboxsChecked.length;
-});
+  form.addEventListener('change', () => {
+    let checkboxsChecked = element.querySelectorAll('input[type="checkbox"]:checked');
+    formButton.disabled = !checkboxsChecked.length;
+  });
 
-form.addEventListener('submit', (event) => {
-  event.preventDefault();
-  render('result');
-});
+  form.addEventListener('submit', (event) => {
+    event.preventDefault();
+    render('result');
+  });
 
-export default element;
+  return element;
+}

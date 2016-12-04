@@ -1,7 +1,7 @@
 import getElementFromTemplate from 'elements/getElement';
 import render from 'elements/render';
 
-const content = {
+const welcome = {
   title: 'Угадай мелодию',
   buttonPlay: 'Начать игру',
   rules: {
@@ -13,25 +13,27 @@ const content = {
   }
 };
 
-const title = `<section class="logo" title="Угадай мелодию"><h1>${content.title}</h1></section>`;
+export default (content) => {
 
-const button = `<button class="main-play">${content.buttonPlay}</button>`;
+  const title = `<section class="logo" title="Угадай мелодию"><h1>${content.title}</h1></section>`;
 
-const rules =
-  `<h2 class="title main-title">${content.rules.title}</h2>
+  const button = `<button class="main-play">${content.buttonPlay}</button>`;
+
+  const rules =
+    `<h2 class="title main-title">${content.rules.title}</h2>
    <p class="text main-text">${content.rules.text}</p>`;
 
-const welcomeMarkup =
-  `<section class="main main--welcome">
+  const welcomeMarkup =
+    `<section class="main main--welcome">
     ${title}
     ${button}
     ${rules}
   </section>`;
 
-const element = getElementFromTemplate(welcomeMarkup);
+  const element = getElementFromTemplate(welcomeMarkup);
 
-let buttonPlay = element.querySelector('.main-play');
-buttonPlay.addEventListener('click', () => render('artist'));
+  let buttonPlay = element.querySelector('.main-play');
+  buttonPlay.addEventListener('click', () => render('artist'));
 
-export default element;
-
+  return element;
+}

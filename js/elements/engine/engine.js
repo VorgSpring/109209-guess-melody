@@ -14,7 +14,7 @@ const Engine = {
 
   nextQuestion() {
     let data = Data.getNextQuestion();
-    if(data.end) {
+    if (data.end) {
       this._endGame(data.end);
     } else {
       render(data.templateName, data.contents);

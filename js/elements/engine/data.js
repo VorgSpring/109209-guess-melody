@@ -19,7 +19,7 @@ const Data = {
   getNextQuestion() {
     this.currentQuestion++;
 
-    if(this.currentQuestion === questionsData.length) {
+    if (this.currentQuestion === questionsData.length) {
       return this._getResult();
     }
 
@@ -36,7 +36,7 @@ const Data = {
   _getResult() {
     return {
       end: resultData
-    }
+    };
   }
 };
 

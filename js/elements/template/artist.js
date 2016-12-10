@@ -1,26 +1,5 @@
-import getElementFromTemplate from 'elements/getElement';
-import render from 'elements/render';
-
-const artist = {
-  title: 'Кто исполняет эту песню?',
-  answers: [
-    {
-      id: 'answer-1',
-      value: 'val-1',
-      name: 'Пелагея'
-    },
-    {
-      id: 'answer-2',
-      value: 'val-2',
-      name: 'Краснознаменная дивизия имени моей бабушки'
-    },
-    {
-      id: 'answer-3',
-      value: 'val-3',
-      name: 'Lorde'
-    }
-  ]
-};
+import getElementFromTemplate from 'elements/template/getElement';
+import Engine from 'elements/engine/engine';
 
 export default (content) => {
 
@@ -45,7 +24,7 @@ export default (content) => {
         <circle
           cx="390" cy="390" r="370"
           class="timer-line"
-          style="filter: url(.#blur); transform: rotate(-90deg) scaleY(-1); transform-origin: center">
+          style="filter: url(../#blur); transform: rotate(-90deg) scaleY(-1); transform-origin: center">
         </circle>
   
         <div class="timer-value" xmlns="http://www.w3.org/1999/xhtml">
@@ -72,9 +51,9 @@ export default (content) => {
   mainWrap.addEventListener('change', () => {
     let radioChecked = mainWrap.querySelectorAll('input[type="radio"]:checked');
     if (radioChecked.length) {
-      render('genre');
+      Engine.nextQuestion();
     }
   });
 
   return element;
-}
+};

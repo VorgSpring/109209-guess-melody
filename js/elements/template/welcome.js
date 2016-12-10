@@ -1,17 +1,5 @@
-import getElementFromTemplate from 'elements/getElement';
-import render from 'elements/render';
-
-const welcome = {
-  title: 'Угадай мелодию',
-  buttonPlay: 'Начать игру',
-  rules: {
-    title: 'Правила игры',
-    text: `Правила просты&nbsp;— за&nbsp;2 минуты дать
-      максимальное количество правильных ответов.<br>
-      На&nbsp;каждую мелодию всего 3 варианта ответа.<br>
-      Удачи!`
-  }
-};
+import getElementFromTemplate from 'elements/template/getElement';
+import Engine from 'elements/engine/engine';
 
 export default (content) => {
 
@@ -33,7 +21,7 @@ export default (content) => {
   const element = getElementFromTemplate(welcomeMarkup);
 
   let buttonPlay = element.querySelector('.main-play');
-  buttonPlay.addEventListener('click', () => render('artist'));
+  buttonPlay.addEventListener('click', () => Engine.startGame());
 
   return element;
-}
+};

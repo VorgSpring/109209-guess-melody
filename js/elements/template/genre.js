@@ -1,28 +1,5 @@
-import getElementFromTemplate from 'elements/getElement';
-import render from 'elements/render';
-
-const genre = {
-  title: 'Выберите инди-рок треки',
-  answers: [
-    {
-      id: 'a-1',
-      value: 'answer-1'
-    },
-    {
-      id: 'a-2',
-      value: 'answer-2'
-    },
-    {
-      id: 'a-3',
-      value: 'answer-3'
-    },
-    {
-      id: 'a-4',
-      value: 'answer-4'
-    }
-  ],
-  formButton: 'Ответить'
-};
+import getElementFromTemplate from 'elements/template/getElement';
+import Engine from 'elements/engine/engine';
 
 export default (content) => {
 
@@ -61,8 +38,8 @@ export default (content) => {
 
   form.addEventListener('submit', (event) => {
     event.preventDefault();
-    render('result');
+    Engine.nextQuestion();
   });
 
   return element;
-}
+};

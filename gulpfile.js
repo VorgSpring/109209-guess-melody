@@ -15,6 +15,19 @@ const sourcemaps = require('gulp-sourcemaps');
 const webpack = require('gulp-webpack');
 const named = require('vinyl-named');
 const path = require('path');
+const mocha = require('gulp-mocha');
+const babelRegister = require('babel-register');
+
+gulp.task('test', function () {
+  return gulp
+    .src(['js/**/*.test.js'], { read: false })
+    .pipe(mocha({
+      compilers: {
+        js: 'babel-register'
+      },
+      reporter: 'spec'
+    }));
+});
 
 gulp.task('style', function () {
   gulp.src('sass/style.scss')

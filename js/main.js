@@ -1,6 +1,5 @@
-import render from 'elements/render';
+import Engine from 'elements/engine/engine';
 
 (function () {
-  render('welcome');
+  Engine.firstScreen();
 })();
-

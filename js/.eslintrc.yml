@@ -10,3 +10,4 @@ extends: 'htmlacademy/es6'
 rules:
   camelcase: [2, { properties: 'never' }]
   quotes: [2, 'single']
+  linebreak-style: 'off'

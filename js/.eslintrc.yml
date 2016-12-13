@@ -1,6 +1,7 @@
 parser: babel-eslint
 
 env:
+  mocha: true
   es6: true
   browser: true
 
@@ -9,3 +10,4 @@ extends: 'htmlacademy/es6'
 rules:
   camelcase: [2, { properties: 'never' }]
   quotes: [2, 'single']
+  linebreak-style: 'off'

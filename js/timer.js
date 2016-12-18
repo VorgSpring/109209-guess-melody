@@ -44,7 +44,7 @@ window.initializeCountdown = () => {
   const radius = parseInt(element.getAttributeNS(null, 'r'), 10);
   const timer = document.querySelector('.timer-value');
 
-  return window.animation.animate(window.animation.getAnimation(0, 1000, 4), (animation) => {
+  return window.animation.animate(window.animation.getAnimation(0, 1000, 120), (animation) => {
     redrawCircle(element, radius, animation);
     redrawTimer(timer, animation);
   }, () => timer.classList.add('timer-value--finished'));

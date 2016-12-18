@@ -6,24 +6,22 @@ export default (content) => {
   const title = `<h2 class="title">${content.title}</h2>`;
 
   const answers = (items) => {
-    return items.reduce((result, item) => {
+    return items.reduce((result, item, number) => {
       return result +
         `<div class="genre-answer">
           <div class="player-wrapper"></div>
-          <input type="checkbox" name="answer" value=${item.value} id=${item.id}>
-          <label class="genre-answer-check" for=${item.id}></label>
+          <input type="checkbox" name="answer" value="answer-${number}" id="a-${number}" data-index="${number}">
+          <label class="genre-answer-check" for="a-${number}"></label>
         </div>`;
     }, '');
   };
-
-  const button = `<button class="genre-answer-send" type="submit" disabled>${content.formButton}</button>`;
 
   const genreMarkup =
     `<section class="main main--level main--level-genre">
       ${title}
       <form class="genre">
         ${answers(content.answers)}
-        ${button}
+        <button class="genre-answer-send" type="submit" disabled>Ответить</button>
       </form>
     </section>`;
 

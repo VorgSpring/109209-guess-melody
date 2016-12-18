@@ -10,6 +10,7 @@ const Engine = {
   startGame() {
     let data = Data.getFirstQuestion();
     render(data.templateName, data.contents);
+    window.initializeCountdown();
   },
 
   nextQuestion() {

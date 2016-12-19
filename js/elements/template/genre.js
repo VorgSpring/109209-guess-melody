@@ -36,7 +36,16 @@ export default (content) => {
 
   form.addEventListener('submit', (event) => {
     event.preventDefault();
-    Engine.nextQuestion();
+    let checkboxs = element.querySelectorAll('input[type="checkbox"]:checked');
+    let correct = true;
+    for (let checkbox of checkboxs) {
+      const index = checkbox.dataset.index;
+      correct = content.answers[index].correct;
+      if (!correct) {
+        break;
+      }
+    }
+    Engine.nextQuestion(correct);
   });
 
   return element;

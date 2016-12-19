@@ -3,19 +3,15 @@ import Engine from 'elements/engine/engine';
 
 export default (content) => {
 
-  const title = `<section class="logo" title="Угадай мелодию"><h1>${content.title}</h1></section>`;
-
-  const resultGame = `<h2 class="title">${content.result.title}</h2>
-    <div class="main-stat">${content.result.status}</div>
-    <span class="main-comparison">${content.result.comparison}</span>`;
-
-  const button = `<span role="button" tabindex="0" class="main-replay">${content.buttonReset}</span>`;
+  const resultGame = `<h2 class="title">${content.title}</h2>
+    <div class="main-stat">За&nbsp;${content.time}<br>вы&nbsp;отгадали ${content.count}&nbsp;мелодии</div>
+    <span class="main-comparison">Это&nbsp;лучше чем у&nbsp;${content.comparison}&nbsp;игроков</span>`;
 
   const resultMarkup =
     `<section class="main main--result">
-      ${title}
+      <section class="logo" title="Угадай мелодию"><h1>Угадай мелодию</h1></section>
       ${resultGame}
-      ${button}
+      <span role="button" tabindex="0" class="main-replay">Сыграть ещё раз</span>
     </section>`;
 
   const element = getElementFromTemplate(resultMarkup);

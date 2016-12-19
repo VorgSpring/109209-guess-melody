@@ -20,20 +20,6 @@ export default (content) => {
 
   const artistMarkup =
     `<section class="main main--level main--level-artist">
-      <svg xmlns="http://www.w3.org/2000/svg" class="timer" viewBox="0 0 780 780">
-        <circle
-          cx="390" cy="390" r="370"
-          class="timer-line"
-          style="filter: url(#blur); transform: rotate(-90deg) scaleY(-1); transform-origin: center">
-        </circle>
-      </svg>
-  
-        <div class="timer-value" xmlns="http://www.w3.org/1999/xhtml">
-          <span class="timer-value-mins">02</span><!--
-          --><span class="timer-value-dots">:</span><!--
-          --><span class="timer-value-secs">00</span>
-        </div>
-  
       <div class="main-wrap">
         <div class="main-timer"></div>
           ${title}
@@ -51,7 +37,9 @@ export default (content) => {
   mainWrap.addEventListener('change', () => {
     let radioChecked = mainWrap.querySelectorAll('input[type="radio"]:checked');
     if (radioChecked.length) {
-      Engine.nextQuestion();
+      const index = radioChecked[0].dataset.index;
+      const correct = content.answers[index].correct;
+      Engine.nextQuestion(correct);
     }
   });
 

@@ -1,6 +1,5 @@
 import welcomeData from 'elements/data/welcome';
 import questionsData from 'elements/data/questions';
-import resultData from 'elements/data/result';
 
 const Data = {
   currentQuestion: 0,
@@ -20,7 +19,9 @@ const Data = {
     this.currentQuestion++;
 
     if (this.currentQuestion === questionsData.length) {
-      return this._getResult();
+      return {
+        end: true
+      };
     }
 
     return {
@@ -31,12 +32,6 @@ const Data = {
 
   restart() {
     this.currentQuestion = 0;
-  },
-
-  _getResult() {
-    return {
-      end: resultData
-    };
   }
 };
 

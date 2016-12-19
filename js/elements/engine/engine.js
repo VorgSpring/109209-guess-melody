@@ -58,8 +58,8 @@ const Engine = {
 
   restartGame() {
     Data.restart();
-    // если остался анимированный таймер
-    if (document.querySelector('.timer-container')){
+    // если остался анимированный таймер, то удаляем его
+    if (document.querySelector('.timer-container')) {
       imageTimer.deleteTimer();
     }
     this.firstScreen();

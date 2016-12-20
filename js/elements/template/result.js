@@ -5,7 +5,7 @@ export default (content) => {
 
   const resultGame = `<h2 class="title">${content.title}</h2>
     <div class="main-stat">За&nbsp;${content.time}<br>вы&nbsp;отгадали ${content.count}&nbsp;мелодии</div>
-    <span class="main-comparison">Это&nbsp;лучше чем у&nbsp;${content.comparison}&nbsp;игроков</span>`;
+    <span class="main-comparison">Это&nbsp;лучше чем у&nbsp;${content.comparison}&nbsp;% игроков</span>`;
 
   const resultMarkup =
     `<section class="main main--result">

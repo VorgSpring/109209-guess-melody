@@ -1,17 +1,12 @@
 import render from 'elements/engine/render';
 import imageTimer from 'elements/timer/render';
-import Data from './data';
-import Gamer from 'elements/gamer/gamer';
+import Data from 'elements/engine/data';
+import game from 'elements/engine/game';
 
 const Engine = {
-  // игрок
-  gamer: null,
-  // таймер игры
-  gameTimer: null,
+  game: game.initialGame,
 
   firstScreen() {
-    // создаем игрока
-    this.gamer = new Gamer();
     // получаем данные с модели
     let data = Data.getWelcome();
     // отрисовываем страницу
@@ -19,29 +14,32 @@ const Engine = {
   },
 
   startGame() {
+    document.addEventListener('timeLeft', this._endGame.bind(this));
+    document.addEventListener('secondPassed', this._setTime.bind(this));
     // получаем данные с модели
     let data = Data.getFirstQuestion();
     // отрисовываем страницу
     render(data.templateName, data.contents);
+    imageTimer.renderTimer();
     // заводим таймер
-    this._startTimer();
+    window.initializeCountdown();
   },
 
   nextQuestion(correct) {
     // если ответ не правильный
     if (!correct) {
       // уменьшаем жизни
-      this.gamer.lives--;
+      game.setLives(this.game, -5);
       // если жизней не осталось
-      if (this.gamer.lives < 0) {
+      if (this.game.lives < 0) {
         // заканчиваем игру
-        this._endGame(true);
+        this._endGame(null, true);
         // выходим из функции
         return;
       }
     } else {
       // если правильный ответ, то увиличиваем колличество правильных ответов
-      this.gamer.currentAnswers++;
+      game.setCurrentAnswers(this.game, this.game.currentAnswers++);
     }
 
     // получаем данные с модели
@@ -49,7 +47,7 @@ const Engine = {
     // если вопросов больше нет
     if (data.end) {
       // заканчиваем игру
-      this._endGame(true);
+      this._endGame(null, true);
     } else {
       // если вопросы есть, то отрисовываем страницу
       render(data.templateName, data.contents);
@@ -65,41 +63,24 @@ const Engine = {
     this.firstScreen();
   },
 
-  _endGame(flag) {
+  _endGame(event, flag) {
     // если нужно удалить анимацию таймера
     // оставляем анимацию только в том случае, если закончилось время игры
     if (flag) {
       imageTimer.deleteTimer();
     }
+    let result = {
+      answers: this.game.currentAnswers,
+      time: this.game.gameTime
+    };
     // получаем данные от игрока
-    let data = this._getResult();
+    let data = Data.getResultGame(result);
     // отрисовываем страницу
     render('result', data);
   },
 
-  _startTimer() {
-    // отрисовываем анимированный таймер
-    imageTimer.renderTimer();
-    // запускаем анимацию
-    window.initializeCountdown();
-    // заводим таймер игры
-    this.gameTimer = setInterval(()=> {
-      // если прошло 2-е минуты
-      if (this.gamer.timeGame === 120) {
-        // заканчиваем игру, не удаляем анимированный таймер
-        this._endGame(false);
-      } else {
-        // если время не вышло, то увиличиваем время текущей игры
-        this.gamer.timeGame++;
-      }
-    }, 1000);
-  },
-
-  _getResult() {
-    // удаляем таймер игры
-    clearInterval(this.gameTimer);
-    // возвращаем данные от игрока
-    return this.gamer.resultGame;
+  _setTime() {
+    game.setTime(this.game, this.game.gameTime++);
   }
 };
 

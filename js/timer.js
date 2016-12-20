@@ -23,14 +23,24 @@ const redrawCircle = (circle, radius, animation) => {
   return circle;
 };
 
-
 const addLeadingZero = (val) => val < 10 ? `0${val}` : val;
 
+const timeLeftEvent = new CustomEvent('timeLeft', {
+  bubbles: true,
+  cancelable: true
+});
+
+const secondPassedEvent = new CustomEvent('secondPassed', {
+  bubbles: true,
+  cancelable: true
+});
 
 const redrawTimer = (timer, animation) => {
   const total = animation.stepDuration * animation.steps;
   const passed = animation.stepDuration * animation.step;
   const timeLeft = window.formatTime(total, passed);
+
+  document.dispatchEvent(secondPassedEvent);
 
   timer.querySelector('.timer-value-mins').textContent = addLeadingZero(timeLeft.minutes);
   timer.querySelector('.timer-value-secs').textContent = addLeadingZero(timeLeft.seconds);
@@ -47,5 +57,8 @@ window.initializeCountdown = () => {
   return window.animation.animate(window.animation.getAnimation(0, 1000, 120), (animation) => {
     redrawCircle(element, radius, animation);
     redrawTimer(timer, animation);
-  }, () => timer.classList.add('timer-value--finished'));
+  }, () => {
+    timer.classList.add('timer-value--finished');
+    document.dispatchEvent(timeLeftEvent);
+  });
 };

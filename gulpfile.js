@@ -73,9 +73,6 @@ gulp.task('scripts', function () {
     .pipe(gulp.dest('build/js/'));
 });
 
-gulp.task('test', function () {
-});
-
 gulp.task('imagemin', ['copy'], function () {
   return gulp.src('build/img/**/*.{jpg,png,gif}')
     .pipe(imagemin([

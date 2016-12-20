@@ -20,7 +20,7 @@ const setTime = (game, value) => {
   }
 
   return Object.assign({}, game, {
-    timer: value
+    gameTime: value
   });
 };
 
@@ -30,7 +30,7 @@ const setCurrentAnswers = (game, value) => {
   }
 
   return Object.assign({}, game, {
-    currentQuestion: value
+    currentAnswers: value
   });
 };
 

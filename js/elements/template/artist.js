@@ -6,12 +6,12 @@ export default (content) => {
   const title = `<h2 class="title main-title">${content.title}</h2>`;
 
   const answers = (items) => {
-    return items.reduce((result, item) => {
+    return items.reduce((result, item, number) => {
       return result +
         `<div class="main-answer-wrapper">
-          <input class="main-answer-r" type="radio" id=${item.id} name="answer" value=${item.value} />
-          <label class="main-answer" for=${item.id}>
-          <img class="main-answer-preview" src="">
+          <input class="main-answer-r" type="radio" id="answer-${number}" name="answer" value="val-${number}" data-index="${number}">
+          <label class="main-answer" for="answer-${number}">
+          <img class="main-answer-preview" src="${item.img}">
           ${item.name}
           </label>
         </div>`;
@@ -20,20 +20,6 @@ export default (content) => {
 
   const artistMarkup =
     `<section class="main main--level main--level-artist">
-      <svg xmlns="http://www.w3.org/2000/svg" class="timer" viewBox="0 0 780 780">
-        <circle
-          cx="390" cy="390" r="370"
-          class="timer-line"
-          style="filter: url(#blur); transform: rotate(-90deg) scaleY(-1); transform-origin: center">
-        </circle>
-  
-        <div class="timer-value" xmlns="http://www.w3.org/1999/xhtml">
-          <span class="timer-value-mins">02</span><!--
-          --><span class="timer-value-dots">:</span><!--
-          --><span class="timer-value-secs">00</span>
-        </div>
-      </svg>
-  
       <div class="main-wrap">
         <div class="main-timer"></div>
           ${title}
@@ -51,7 +37,9 @@ export default (content) => {
   mainWrap.addEventListener('change', () => {
     let radioChecked = mainWrap.querySelectorAll('input[type="radio"]:checked');
     if (radioChecked.length) {
-      Engine.nextQuestion();
+      const index = radioChecked[0].dataset.index;
+      const correct = content.answers[index].correct;
+      Engine.nextQuestion(correct);
     }
   });
 

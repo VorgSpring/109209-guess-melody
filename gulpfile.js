@@ -73,9 +73,6 @@ gulp.task('scripts', function () {
     .pipe(gulp.dest('build/js/'));
 });
 
-gulp.task('test', function () {
-});
-
 gulp.task('imagemin', ['copy'], function () {
   return gulp.src('build/img/**/*.{jpg,png,gif}')
     .pipe(imagemin([
@@ -95,7 +92,8 @@ gulp.task('copy-html', function () {
 gulp.task('copy', ['copy-html', 'scripts', 'style'], function () {
   return gulp.src([
     'fonts/**/*.{woff,woff2}',
-    'img/*.*'
+    'img/**/*.*',
+    'audio/*.*'
   ], {base: '.'})
     .pipe(gulp.dest('build'));
 });

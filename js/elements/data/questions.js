@@ -1,23 +1,24 @@
 const questions = [
   {
     type: 'artist',
+    audio: 'audio/track1.mp3',
     content: {
       title: 'Кто исполняет эту песню?',
       answers: [
         {
-          id: 'answer-1',
-          value: 'val-1',
-          name: 'Пелагея'
+          correct: false,
+          name: 'Пелагея',
+          img: 'img/bands/Pelageya.jpg'
         },
         {
-          id: 'answer-2',
-          value: 'val-2',
-          name: 'Краснознаменная дивизия имени моей бабушки'
+          correct: false,
+          name: 'Краснознаменная дивизия имени моей бабушки',
+          img: 'img/bands/RBDBOMG.jpg'
         },
         {
-          id: 'answer-3',
-          value: 'val-3',
-          name: 'Lorde'
+          correct: true,
+          name: 'Lorde',
+          img: 'img/bands/Lorde.jpg'
         }
       ]
     }
@@ -28,44 +29,44 @@ const questions = [
       title: 'Выберите инди-рок треки',
       answers: [
         {
-          id: 'a-1',
-          value: 'answer-1'
+          correct: false,
+          audio: 'audio/track2.mp3'
         },
         {
-          id: 'a-2',
-          value: 'answer-2'
+          correct: true,
+          audio: 'audio/track3.mp3'
         },
         {
-          id: 'a-3',
-          value: 'answer-3'
+          correct: false,
+          audio: 'audio/track4.mp3'
         },
         {
-          id: 'a-4',
-          value: 'answer-4'
+          correct: true,
+          audio: 'audio/track5.mp3'
         }
-      ],
-      formButton: 'Ответить'
+      ]
     }
   },
   {
     type: 'artist',
+    audio: 'audio/track6.mp3',
     content: {
       title: 'Кто исполняет эту песню?',
       answers: [
         {
-          id: 'answer-1',
-          value: 'val-1',
-          name: 'Lumen'
+          correct: false,
+          name: 'Lumen',
+          img: 'img/bands/Lumen.jpg'
         },
         {
-          id: 'answer-2',
-          value: 'val-2',
-          name: '7PACA'
+          correct: true,
+          name: '7РАСА',
+          img: 'img/bands/7race.jpg'
         },
         {
-          id: 'answer-3',
-          value: 'val-3',
-          name: 'Slot'
+          correct: false,
+          name: 'Slot',
+          img: 'img/bands/Slot.jpg'
         }
       ]
     }
@@ -76,44 +77,44 @@ const questions = [
       title: 'Выберите регги треки',
       answers: [
         {
-          id: 'a-1',
-          value: 'answer-1'
+          correct: false,
+          audio: 'audio/track7.mp3'
         },
         {
-          id: 'a-2',
-          value: 'answer-2'
+          correct: true,
+          audio: 'audio/track8.mp3'
         },
         {
-          id: 'a-3',
-          value: 'answer-3'
+          correct: true,
+          audio: 'audio/track9.mp3'
         },
         {
-          id: 'a-4',
-          value: 'answer-4'
+          correct: true,
+          audio: 'audio/track10.mp3'
         }
-      ],
-      formButton: 'Ответить'
+      ]
     }
   },
   {
     type: 'artist',
+    audio: 'audio/track11.mp3',
     content: {
       title: 'Кто исполняет эту песню?',
       answers: [
         {
-          id: 'answer-1',
-          value: 'val-1',
-          name: 'Metallica'
+          correct: true,
+          name: 'Metallica',
+          img: 'img/bands/Metallica.jpg'
         },
         {
-          id: 'answer-2',
-          value: 'val-2',
-          name: 'Iron Maiden'
+          correct: false,
+          name: 'Iron Maiden',
+          img: 'img/bands/Iron Maiden.jpg'
         },
         {
-          id: 'answer-3',
-          value: 'val-3',
-          name: 'Megadeth'
+          correct: false,
+          name: 'Megadeth',
+          img: 'img/bands/Megadeth.jpg'
         }
       ]
     }
@@ -124,44 +125,44 @@ const questions = [
       title: 'Выберите black metal треки',
       answers: [
         {
-          id: 'a-1',
-          value: 'answer-1'
+          correct: true,
+          audio: 'audio/track12.mp3'
         },
         {
-          id: 'a-2',
-          value: 'answer-2'
+          correct: false,
+          audio: 'audio/track13.mp3'
         },
         {
-          id: 'a-3',
-          value: 'answer-3'
+          correct: false,
+          audio: 'audio/track14.mp3'
         },
         {
-          id: 'a-4',
-          value: 'answer-4'
+          correct: false,
+          audio: 'audio/track15.mp3'
         }
-      ],
-      formButton: 'Ответить'
+      ]
     }
   },
   {
     type: 'artist',
+    audio: 'audio/track16.mp3',
     content: {
       title: 'Кто исполняет эту песню?',
       answers: [
         {
-          id: 'answer-1',
-          value: 'val-1',
-          name: 'Монгол Шуудан'
+          correct: false,
+          name: 'Монгол Шуудан',
+          img: 'img/bands/Mongol.jpg'
         },
         {
-          id: 'answer-2',
-          value: 'val-2',
-          name: 'F.P.G.'
+          correct: true,
+          name: 'F.P.G.',
+          img: 'img/bands/FPG.jpg'
         },
         {
-          id: 'answer-3',
-          value: 'val-3',
-          name: 'Пурген'
+          correct: false,
+          name: 'Пурген',
+          img: 'img/bands/Purgen.jpg'
         }
       ]
     }
@@ -172,44 +173,44 @@ const questions = [
       title: 'Выберите фанк-рок треки',
       answers: [
         {
-          id: 'a-1',
-          value: 'answer-1'
+          correct: false,
+          audio: 'audio/track17.mp3'
         },
         {
-          id: 'a-2',
-          value: 'answer-2'
+          correct: false,
+          audio: 'audio/track18.mp3'
         },
         {
-          id: 'a-3',
-          value: 'answer-3'
+          correct: true,
+          audio: 'audio/track19.mp3'
         },
         {
-          id: 'a-4',
-          value: 'answer-4'
+          correct: false,
+          audio: 'audio/track20.mp3'
         }
-      ],
-      formButton: 'Ответить'
+      ]
     }
   },
   {
     type: 'artist',
+    audio: 'audio/track21.mp3',
     content: {
       title: 'Кто исполняет эту песню?',
       answers: [
         {
-          id: 'answer-1',
-          value: 'val-1',
-          name: 'Marduk'
+          correct: false,
+          name: 'Marduk',
+          img: 'img/bands/Marduk.jpg'
         },
         {
-          id: 'answer-2',
-          value: 'val-2',
-          name: 'Mayhem'
+          correct: true,
+          name: 'Mayhem',
+          img: 'img/bands/Mayhem.jpg'
         },
         {
-          id: 'answer-3',
-          value: 'val-3',
-          name: 'Gorgoroth'
+          correct: false,
+          name: 'Gorgoroth',
+          img: 'img/bands/Gorgoroth.jpg'
         }
       ]
     }
@@ -220,23 +221,22 @@ const questions = [
       title: 'Выберите панк-рок треки',
       answers: [
         {
-          id: 'a-1',
-          value: 'answer-1'
+          correct: false,
+          audio: 'audio/track22.mp3'
         },
         {
-          id: 'a-2',
-          value: 'answer-2'
+          correct: false,
+          audio: 'audio/track23.mp3'
         },
         {
-          id: 'a-3',
-          value: 'answer-3'
+          correct: true,
+          audio: 'audio/track24.mp3'
         },
         {
-          id: 'a-4',
-          value: 'answer-4'
+          correct: true,
+          audio: 'audio/track25.mp3'
         }
-      ],
-      formButton: 'Ответить'
+      ]
     }
   }
 ];

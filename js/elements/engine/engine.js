@@ -4,7 +4,7 @@ import Data from 'elements/engine/data';
 import game from 'elements/engine/game';
 
 const Engine = {
-  game: game.initialGame,
+  game: null,
 
   firstScreen() {
     // получаем данные с модели
@@ -16,6 +16,7 @@ const Engine = {
   startGame() {
     document.addEventListener('timeLeft', this._endGame.bind(this));
     document.addEventListener('secondPassed', this._setTime.bind(this));
+    this.game = game.initialGame;
     // получаем данные с модели
     let data = Data.getFirstQuestion();
     // отрисовываем страницу

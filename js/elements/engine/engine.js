@@ -16,7 +16,7 @@ const Engine = {
   startGame() {
     document.addEventListener('timeLeft', this._endGame.bind(this));
     document.addEventListener('secondPassed', this._setTime.bind(this));
-    this.game = game.initialGame;
+    this.game = game.getInitialGame();
     // получаем данные с модели
     let data = Data.getFirstQuestion();
     // отрисовываем страницу

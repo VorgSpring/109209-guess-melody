@@ -4,6 +4,10 @@ const initialGame = {
   currentAnswers: 0
 };
 
+const getInitialGame = () => {
+  return Object.assign({}, initialGame);
+};
+
 const setLives = (game, value) => {
   if (value < 0 || value > 3) {
     throw new RangeError('The number of lives can not be more than 3 and less than 0');
@@ -35,7 +39,7 @@ const setCurrentAnswers = (game, value) => {
 };
 
 export default {
-  initialGame,
+  getInitialGame,
   setLives,
   setTime,
   setCurrentAnswers

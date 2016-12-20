@@ -29,7 +29,7 @@ const Engine = {
     // если ответ не правильный
     if (!correct) {
       // уменьшаем жизни
-      game.setLives(this.game, -5);
+      game.setLives(this.game, this.game.lives--);
       // если жизней не осталось
       if (this.game.lives < 0) {
         // заканчиваем игру

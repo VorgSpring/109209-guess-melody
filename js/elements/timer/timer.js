@@ -18,7 +18,5 @@ export default () => {
         </div>
     </div>`;
 
-  const element = getElementFromTemplate(timerMarkup);
-
-  return element;
+  return getElementFromTemplate(timerMarkup);
 };

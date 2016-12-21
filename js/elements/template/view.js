@@ -1,16 +1,19 @@
 export default class AbstractView {
+  constructor(content) {
+    this.content = content;
+  }
 
   get element() {
     if (!this._element) {
-      this._element = document.createElement('div');
+      this._element = document.createElement('template');
       this._element.innerHTML = this.getMarkup();
       this.bindHandlers();
     }
-    return this._element;
+    return this._element.content.firstChild;
   }
 
   getMarkup() {
-    throw new Error(`Abstract method should be implemented`);
+    throw new Error('Abstract method should be implemented');
   }
 
   bindHandlers() {

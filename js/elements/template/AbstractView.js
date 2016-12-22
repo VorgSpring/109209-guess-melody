@@ -1,6 +1,7 @@
 export default class AbstractView {
   constructor(content) {
     this.content = content;
+    this.activeEvents = [];
   }
 
   get element() {
@@ -20,7 +21,19 @@ export default class AbstractView {
     // By default there is nothing to bind
   }
 
+  _addEvent(element, typeEvent, eventFunction) {
+    element.addEventListener(typeEvent, eventFunction);
+    this.activeEvents.push({
+      element,
+      typeEvent,
+      eventFunction
+    });
+  }
+
   clearHandlers() {
-    // By default nothing to clear
+    this.activeEvents.forEach((item) => {
+      item.element.removeEventListener(item.typeEvent, item.eventFunction);
+    });
+    this.activeEvents = [];
   }
 }

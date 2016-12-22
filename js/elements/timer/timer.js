@@ -1,7 +1,7 @@
 import AbstractView from 'elements/template/AbstractView';
 
 class TimerView extends AbstractView {
-  constructor(){
+  constructor() {
     super();
   }
 

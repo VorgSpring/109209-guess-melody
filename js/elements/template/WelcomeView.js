@@ -27,7 +27,15 @@ class WelcomeView extends AbstractView {
 
   bindHandlers() {
     let buttonPlay = this.element.querySelector('.main-play');
-    buttonPlay.addEventListener('click', () => Engine.startGame());
+    super._addEvent(buttonPlay, 'click', this._onClick);
+  }
+
+  _onClick() {
+    Engine.startGame();
+  }
+
+  clearHandlers() {
+    super.clearHandlers.call(this);
   }
 }
 

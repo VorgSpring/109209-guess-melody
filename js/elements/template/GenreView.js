@@ -31,33 +31,39 @@ class GenreView extends AbstractView {
 
   bindHandlers() {
     const form = this.element.querySelector('.genre');
-    const formButton = form.querySelector('.genre-answer-send');
+    super._addEvent(form, 'change', this._onChange);
+    super._addEvent(form, 'submit', this._onSubmit.bind(this, form));
+  }
 
-    form.addEventListener('change', () => {
-      let checkboxsChecked = form.querySelectorAll('input[type="checkbox"]:checked');
-      formButton.disabled = !checkboxsChecked.length;
+  _onChange() {
+    const formButton = this.querySelector('.genre-answer-send');
+    const checkboxsChecked = this.querySelectorAll('input[type="checkbox"]:checked');
+    formButton.disabled = !checkboxsChecked.length;
+  }
+
+  _onSubmit(form) {
+    event.preventDefault();
+    let checkboxs = form.querySelectorAll('input[type="checkbox"]:checked');
+    let correct = true;
+    for (let checkbox of checkboxs) {
+      const index = checkbox.dataset.index;
+      correct = this.content.answers[index].correct;
+      if (!correct) {
+        break;
+      }
+    }
+    let correctAnswers = this.content.answers.filter((item) => {
+      return item.correct;
     });
 
-    form.addEventListener('submit', () => {
-      event.preventDefault();
-      let checkboxs = form.querySelectorAll('input[type="checkbox"]:checked');
-      let correct = true;
-      for (let checkbox of checkboxs) {
-        const index = checkbox.dataset.index;
-        correct = this.content.answers[index].correct;
-        if (!correct) {
-          break;
-        }
-      }
-      let correctAnswers = this.content.answers.filter((item) => {
-        return item.correct;
-      });
+    if (checkboxs.length !== correctAnswers.length) {
+      correct = false;
+    }
+    Engine.nextQuestion(correct);
+  }
 
-      if (checkboxs.length !== correctAnswers.length) {
-        correct = false;
-      }
-      Engine.nextQuestion(correct);
-    });
+  clearHandlers() {
+    super.clearHandlers.call(this);
   }
 }
 

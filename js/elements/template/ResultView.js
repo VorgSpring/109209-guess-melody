@@ -21,7 +21,15 @@ class ResultView extends AbstractView {
 
   bindHandlers() {
     let buttonReset = this.element.querySelector('.main-replay');
-    buttonReset.addEventListener('click', () => Engine.restartGame());
+    super._addEvent(buttonReset, 'click', this._onClick);
+  }
+
+  _onClick() {
+    Engine.restartGame();
+  }
+
+  clearHandlers() {
+    super.clearHandlers.call(this);
   }
 }
 

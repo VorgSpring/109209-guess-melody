@@ -36,19 +36,20 @@ class ArtistView extends AbstractView {
 
   bindHandlers() {
     const mainWrap = this.element.querySelector('.main-list');
-
-    mainWrap.addEventListener('change', () => {
-      let radioChecked = mainWrap.querySelectorAll('input[type="radio"]:checked');
-      if (radioChecked.length) {
-        const index = radioChecked[0].dataset.index;
-        const correct = this.content.answers[index].correct;
-        Engine.nextQuestion(correct);
-      }
-    });
+    super._addEvent(mainWrap, 'change', this._onChange.bind(this, this.element));
   }
 
-  _onChange() {
+  _onChange(element) {
+    let radioChecked = element.querySelectorAll('input[type="radio"]:checked');
+    if (radioChecked.length) {
+      const index = radioChecked[0].dataset.index;
+      const correct = this.content.answers[index].correct;
+      Engine.nextQuestion(correct);
+    }
+  }
 
+  clearHandlers() {
+    super.clearHandlers.call(this);
   }
 }
 

@@ -24,7 +24,7 @@ export const setTime = (game, value) => {
   });
 };
 
-export const setCurrentAnswers = (game, value) => {
+export const setCorrectAnswers = (game, value) => {
   if (value < 0 || value > 10) {
     throw new RangeError('Answers can not be more than 10 and less than 0');
   }

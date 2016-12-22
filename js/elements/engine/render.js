@@ -1,7 +1,7 @@
-import welcomeModule from 'elements/template/welcome';
-import artistModule from 'elements/template/artist';
-import genreModule from 'elements/template/genre';
-import resultModule from 'elements/template/result';
+import welcomeModule from 'elements/template/WelcomeView';
+import artistModule from 'elements/template/ArtistView';
+import genreModule from 'elements/template/GenreView';
+import resultModule from 'elements/template/ResultView';
 
 let slides = {
   welcome: welcomeModule,

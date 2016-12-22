@@ -1,8 +1,12 @@
-import getElementFromTemplate from 'elements/template/getElement';
+import AbstractView from 'elements/template/AbstractView';
 
-export default () => {
-  const timerMarkup =
-    `<div class="timer-container">
+class TimerView extends AbstractView {
+  constructor(){
+    super();
+  }
+
+  getMarkup() {
+    return `<div class="timer-container">
         <svg xmlns="http://www.w3.org/2000/svg" class="timer" viewBox="0 0 780 780">
             <circle
                 cx="390" cy="390" r="370"
@@ -17,6 +21,7 @@ export default () => {
             --><span class="timer-value-secs">00</span>
         </div>
     </div>`;
+  }
+}
 
-  return getElementFromTemplate(timerMarkup);
-};
+export default () => new TimerView().element;

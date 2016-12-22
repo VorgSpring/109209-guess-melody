@@ -40,7 +40,7 @@ const Engine = {
       }
     } else {
       // если правильный ответ, то увиличиваем колличество правильных ответов
-      this.gamer.currentAnswer();
+      this.gamer.correctAnswer();
     }
 
     // получаем данные с модели

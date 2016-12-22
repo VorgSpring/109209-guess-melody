@@ -1,6 +1,6 @@
-import {initialGame, setLives, setTime, setCurrentAnswers} from 'elements/data/gamer';
+import {initialGame, setLives, setTime, setCorrectAnswers} from 'elements/data/gamer';
 
-export default class Model {
+export default class Game {
   constructor(state = initialGame) {
     this._state = state;
   }
@@ -17,7 +17,7 @@ export default class Model {
     this._state = setTime(this._state, this._state.gameTime + 1);
   }
 
-  currentAnswer() {
-    this._state = setCurrentAnswers(this._state, this._state.currentAnswers + 1);
+  correctAnswer() {
+    this._state = setCorrectAnswers(this._state, this._state.currentAnswers + 1);
   }
 }

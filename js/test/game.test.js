@@ -1,5 +1,5 @@
 import assert from 'assert';
-import {initialGame, setLives, setTime, setCurrentAnswers} from '../elements/data/gamer';
+import {initialGame, setLives, setTime, setCorrectAnswers} from '../elements/data/gamer';
 
 describe('Test game module', () => {
   let obj = initialGame;
@@ -26,15 +26,15 @@ describe('Test game module', () => {
     });
   });
 
-  describe('Test method setCurrentAnswers', () => {
+  describe('Test method setCorrectAnswers', () => {
     it('Answers can be less than 0', () => {
-      assert.throws(() => setCurrentAnswers(obj, -5));
+      assert.throws(() => setCorrectAnswers(obj, -5));
     });
     it('Answers can be more than 10', () => {
-      assert.throws(() => setCurrentAnswers(obj, 11));
+      assert.throws(() => setCorrectAnswers(obj, 11));
     });
     it('Answers can not be changed', () => {
-      assert.equal(setCurrentAnswers(obj, 10).currentAnswers, 10);
+      assert.equal(setCorrectAnswers(obj, 10).currentAnswers, 10);
     });
   });
 });

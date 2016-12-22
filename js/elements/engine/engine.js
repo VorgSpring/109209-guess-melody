@@ -1,10 +1,10 @@
 import render from 'elements/engine/render';
 import imageTimer from 'elements/timer/render';
 import Data from 'elements/engine/data';
-import game from 'elements/engine/game';
+import Gamer from 'elements/engine/game';
 
 const Engine = {
-  game: null,
+  gamer: null,
 
   firstScreen() {
     // получаем данные с модели
@@ -14,9 +14,9 @@ const Engine = {
   },
 
   startGame() {
+    this.gamer = new Gamer();
     document.addEventListener('timeLeft', this._endGame.bind(this));
-    document.addEventListener('secondPassed', this._setTime.bind(this));
-    this.game = game.getInitialGame();
+    document.addEventListener('secondPassed', this.gamer.tick.bind(this.gamer));
     // получаем данные с модели
     let data = Data.getFirstQuestion();
     // отрисовываем страницу
@@ -30,9 +30,9 @@ const Engine = {
     // если ответ не правильный
     if (!correct) {
       // уменьшаем жизни
-      game.setLives(this.game, this.game.lives--);
+      this.gamer.die();
       // если жизней не осталось
-      if (this.game.lives < 0) {
+      if (this.gamer.state.lives === 0) {
         // заканчиваем игру
         this._endGame(null, true);
         // выходим из функции
@@ -40,7 +40,7 @@ const Engine = {
       }
     } else {
       // если правильный ответ, то увиличиваем колличество правильных ответов
-      game.setCurrentAnswers(this.game, this.game.currentAnswers++);
+      this.gamer.correctAnswer();
     }
 
     // получаем данные с модели
@@ -71,17 +71,13 @@ const Engine = {
       imageTimer.deleteTimer();
     }
     let result = {
-      answers: this.game.currentAnswers,
-      time: this.game.gameTime
+      answers: this.gamer.state.currentAnswers,
+      time: this.gamer.state.gameTime
     };
     // получаем данные от игрока
     let data = Data.getResultGame(result);
     // отрисовываем страницу
     render('result', data);
-  },
-
-  _setTime() {
-    game.setTime(this.game, this.game.gameTime++);
   }
 };
 

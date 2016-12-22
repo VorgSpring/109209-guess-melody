@@ -1,46 +1,23 @@
-const initialGame = {
-  lives: 3,
-  gameTime: 0,
-  currentAnswers: 0
-};
+import {initialGame, setLives, setTime, setCorrectAnswers} from 'elements/data/gamer';
 
-const getInitialGame = () => {
-  return Object.assign({}, initialGame);
-};
-
-const setLives = (game, value) => {
-  if (value < 0 || value > 3) {
-    throw new RangeError('The number of lives can not be more than 3 and less than 0');
+export default class Game {
+  constructor(state = initialGame) {
+    this._state = state;
   }
 
-  return Object.assign({}, game, {
-    lives: value
-  });
-};
-
-const setTime = (game, value) => {
-  if (value < 0) {
-    throw new RangeError('Time cannot be negative');
+  get state() {
+    return this._state;
   }
 
-  return Object.assign({}, game, {
-    gameTime: value
-  });
-};
-
-const setCurrentAnswers = (game, value) => {
-  if (value < 0 || value > 10) {
-    throw new RangeError('Answers can not be more than 10 and less than 0');
+  die() {
+    this._state = setLives(this._state, this._state.lives - 1);
   }
 
-  return Object.assign({}, game, {
-    currentAnswers: value
-  });
-};
+  tick() {
+    this._state = setTime(this._state, this._state.gameTime + 1);
+  }
 
-export default {
-  getInitialGame,
-  setLives,
-  setTime,
-  setCurrentAnswers
-};
+  correctAnswer() {
+    this._state = setCorrectAnswers(this._state, this._state.currentAnswers + 1);
+  }
+}

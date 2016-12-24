@@ -1,4 +1,3 @@
-import Engine from 'elements/engine/engine';
 import AbstractView from 'elements/template/AbstractView';
 
 class GenreView extends AbstractView {
@@ -32,7 +31,7 @@ class GenreView extends AbstractView {
   bindHandlers() {
     const form = this.element.querySelector('.genre');
     super._addEvent(form, 'change', this._onChange);
-    super._addEvent(form, 'submit', this._onSubmit.bind(this, form));
+    super._addEvent(form, 'submit', this._onSubmit.bind(this));
   }
 
   _onChange() {
@@ -41,9 +40,9 @@ class GenreView extends AbstractView {
     formButton.disabled = !checkboxsChecked.length;
   }
 
-  _onSubmit(form) {
+  _onSubmit(event) {
     event.preventDefault();
-    let checkboxs = form.querySelectorAll('input[type="checkbox"]:checked');
+    let checkboxs = this.element.querySelectorAll('input[type="checkbox"]:checked');
     let correct = true;
     for (let checkbox of checkboxs) {
       const index = checkbox.dataset.index;
@@ -59,7 +58,15 @@ class GenreView extends AbstractView {
     if (checkboxs.length !== correctAnswers.length) {
       correct = false;
     }
-    Engine.nextQuestion(correct);
+
+    const onAnswerEvent = new CustomEvent('onAnswer', {
+      bubbles: true,
+      cancelable: true,
+      detail: {
+        correct
+      }
+    });
+    document.dispatchEvent(onAnswerEvent);
   }
 
   clearHandlers() {

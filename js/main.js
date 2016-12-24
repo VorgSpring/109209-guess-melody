@@ -1,5 +1,5 @@
-import Engine from 'elements/engine/engine';
+import Application from 'elements/engine/Application';
 
 (function () {
-  Engine.firstScreen();
+  Application.showWelcome();
 })();

@@ -1,5 +1,6 @@
-import welcomeData from 'elements/data/welcome';
-import questionsData from 'elements/data/questions';
+import {initialGame, setLives, setTime,
+  setCorrectAnswers, setCurrentQuestion, hasQuestion,
+    getQuestion} from 'elements/data/gamer';
 import statistics from 'elements/data/statistics';
 
 const formatTime = (time) => {
@@ -13,40 +14,44 @@ const formatTime = (time) => {
   }
 };
 
-const Data = {
-  currentQuestion: 0,
+class Game {
+  constructor(state = initialGame) {
+    this._state = state;
+  }
 
-  getWelcome() {
-    return welcomeData;
-  },
+  get state() {
+    return this._state;
+  }
 
-  getFirstQuestion() {
-    return {
-      templateName: questionsData[this.currentQuestion].type,
-      contents: questionsData[this.currentQuestion].content
+  get question() {
+    return getQuestion(this._state.currentQuestion);
+  }
+
+  hasNextQuestion() {
+   return hasQuestion(this._state.currentQuestion + 1);
+  }
+
+  nextQuestion() {
+    this._state = setCurrentQuestion(this._state, this._state.currentQuestion + 1);
+  }
+
+  die() {
+    this._state = setLives(this._state, this._state.lives - 1);
+  }
+
+  tick() {
+    this._state = setTime(this._state, this._state.gameTime + 1);
+  }
+
+  correctAnswer() {
+    this._state = setCorrectAnswers(this._state, this._state.correctAnswers + 1);
+  }
+
+  getResultGame() {
+    const result = {
+      answers: this._state.correctAnswers,
+      time: this._state.gameTime
     };
-  },
-
-  getNextQuestion() {
-    this.currentQuestion++;
-
-    if (this.currentQuestion === questionsData.length) {
-      return {
-        end: true
-      };
-    }
-
-    return {
-      templateName: questionsData[this.currentQuestion].type,
-      contents: questionsData[this.currentQuestion].content
-    };
-  },
-
-  restart() {
-    this.currentQuestion = 0;
-  },
-
-  getResultGame(result) {
     // вставляем в статистику
     statistics.push(result);
     // сортируем статистику
@@ -65,6 +70,10 @@ const Data = {
       comparison: comparison
     };
   }
-};
 
-export default Data;
+  restart() {
+    this._state = initialGame;
+  }
+}
+export default new Game();
+

@@ -1,5 +1,5 @@
-import Engine from 'elements/engine/engine';
 import AbstractView from 'elements/template/AbstractView';
+import Application from 'elements/engine/Application';
 
 class ResultView extends AbstractView {
   constructor(content) {
@@ -25,7 +25,7 @@ class ResultView extends AbstractView {
   }
 
   _onClick() {
-    Engine.restartGame();
+    Application.showWelcome();
   }
 
   clearHandlers() {

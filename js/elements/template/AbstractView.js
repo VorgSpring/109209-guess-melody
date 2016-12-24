@@ -8,9 +8,10 @@ export default class AbstractView {
     if (!this._element) {
       this._element = document.createElement('template');
       this._element.innerHTML = this.getMarkup();
+      this._element = this._element.content.firstChild;
       this.bindHandlers();
     }
-    return this._element.content.firstChild;
+    return this._element;
   }
 
   getMarkup() {

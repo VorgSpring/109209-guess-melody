@@ -4,7 +4,7 @@ import showStats from 'elements/template/ResultView';
 
 const changeView = (element) => {
   const main = document.querySelector('.main');
-  main.innerHTML = ``;
+  main.innerHTML = '';
   main.parentNode.replaceChild(element, main);
 };
 
@@ -19,7 +19,6 @@ export default class Application {
   }
 
   static showStats(stats) {
-    changeView(showStats(stats))
+    changeView(showStats(stats));
   }
-
 }

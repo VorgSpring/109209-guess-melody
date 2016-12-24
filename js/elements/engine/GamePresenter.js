@@ -14,7 +14,7 @@ class GamePresenter {
 
     document.addEventListener('timeLeft', this._endGame.bind(this, false));
     document.addEventListener('secondPassed', this.game.tick.bind(this.game));
-    document.addEventListener('onAnswer', this.nextQuestion.bind(this))
+    document.addEventListener('onAnswer', this.nextQuestion.bind(this));
   }
 
   changeContentView(data) {
@@ -49,7 +49,7 @@ class GamePresenter {
     // если вопросов больше нет
     if (this.game.hasNextQuestion()) {
       this.game.nextQuestion();
-      this.changeContentView(this.game.question)
+      this.changeContentView(this.game.question);
     } else {
       this._endGame(true);
     }
@@ -71,7 +71,7 @@ class GamePresenter {
     }
     let result = this.game.getResultGame();
     // отрисовываем страницу
-    Application.showStats(result)
+    Application.showStats(result);
   }
 }
 

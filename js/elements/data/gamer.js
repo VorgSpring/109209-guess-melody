@@ -53,7 +53,7 @@ export const hasQuestion = (numberOfQuestion) => {
 
 export const getQuestion = (numberOfQuestion) => {
   if (!hasQuestion(numberOfQuestion)) {
-    throw new RangeError(`This game has no this question`);
+    throw new RangeError('This game has no this question');
   }
 
   return questionsData[numberOfQuestion];

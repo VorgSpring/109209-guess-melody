@@ -28,7 +28,7 @@ class Game {
   }
 
   hasNextQuestion() {
-   return hasQuestion(this._state.currentQuestion + 1);
+    return hasQuestion(this._state.currentQuestion + 1);
   }
 
   nextQuestion() {

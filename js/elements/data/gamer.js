@@ -1,4 +1,4 @@
-import questionsData from 'elements/data/questions';
+import questionsData from './questions';
 
 export const initialGame = {
   lives: 3,

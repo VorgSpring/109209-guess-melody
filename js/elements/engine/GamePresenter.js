@@ -3,6 +3,7 @@ import artistModule from 'elements/template/ArtistView';
 import genreModule from 'elements/template/GenreView';
 import game from 'elements/engine/Game';
 import Application from 'elements/engine/Application';
+import render from 'elements/engine/render';
 
 class GamePresenter {
   constructor(newGame = game) {
@@ -17,16 +18,10 @@ class GamePresenter {
     document.addEventListener('onAnswer', this.nextQuestion.bind(this));
   }
 
-  changeContentView(data) {
-    const root = document.querySelector('.main');
-    root.parentNode.replaceChild(this.screens[data.type](data.content), root);
-  }
-
   startGame() {
     imageTimer.renderTimer();
     window.initializeCountdown();
-    const data = this.game.question;
-    return this.screens[data.type](data.content);
+    return this.game.question;
   }
 
   nextQuestion(event) {
@@ -49,7 +44,7 @@ class GamePresenter {
     // если вопросов больше нет
     if (this.game.hasNextQuestion()) {
       this.game.nextQuestion();
-      this.changeContentView(this.game.question);
+      render(this.game.question.type, this.game.question.content);
     } else {
       this._endGame(true);
     }

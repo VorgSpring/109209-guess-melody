@@ -1,24 +1,18 @@
-import createWelcome from 'elements/template/WelcomeView';
 import newGame from 'elements/engine/GamePresenter';
-import showStats from 'elements/template/ResultView';
-
-const changeView = (element) => {
-  const main = document.querySelector('.main');
-  main.innerHTML = '';
-  main.parentNode.replaceChild(element, main);
-};
+import render from 'elements/engine/render';
 
 export default class Application {
 
   static showWelcome() {
-    changeView(createWelcome());
+    render('welcome');
   }
 
   static showGame() {
-    changeView(newGame());
+    const data = newGame();
+    render(data.type, data.content);
   }
 
   static showStats(stats) {
-    changeView(showStats(stats));
+    render('result', stats);
   }
 }

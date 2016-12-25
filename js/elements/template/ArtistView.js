@@ -1,4 +1,3 @@
-import Engine from 'elements/engine/engine';
 import AbstractView from 'elements/template/AbstractView';
 
 class ArtistView extends AbstractView {
@@ -36,15 +35,22 @@ class ArtistView extends AbstractView {
 
   bindHandlers() {
     const mainWrap = this.element.querySelector('.main-list');
-    super._addEvent(mainWrap, 'change', this._onChange.bind(this, this.element));
+    super._addEvent(mainWrap, 'change', this._onChange.bind(this));
   }
 
-  _onChange(element) {
-    let radioChecked = element.querySelectorAll('input[type="radio"]:checked');
+  _onChange() {
+    let radioChecked = this.element.querySelectorAll('input[type="radio"]:checked');
     if (radioChecked.length) {
       const index = radioChecked[0].dataset.index;
       const correct = this.content.answers[index].correct;
-      Engine.nextQuestion(correct);
+      const onAnswerEvent = new CustomEvent('onAnswer', {
+        bubbles: true,
+        cancelable: true,
+        detail: {
+          correct
+        }
+      });
+      document.dispatchEvent(onAnswerEvent);
     }
   }
 

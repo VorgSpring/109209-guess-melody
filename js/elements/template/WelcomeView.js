@@ -1,5 +1,5 @@
-import Engine from 'elements/engine/engine';
 import AbstractView from 'elements/template/AbstractView';
+import Application from 'elements/engine/Application';
 
 class WelcomeView extends AbstractView {
   constructor(content) {
@@ -7,21 +7,18 @@ class WelcomeView extends AbstractView {
   }
 
   getMarkup() {
-    const title =
-      `<section class="logo" title="Угадай мелодию">
-        <h1>${this.content.title}</h1>
-      </section>`;
-
-    const button = `<button class="main-play">${this.content.buttonPlay}</button>`;
-
-    const rules =
-      `<h2 class="title main-title">${this.content.rules.title}</h2>
-       <p class="text main-text">${this.content.rules.text}</p>`;
-
     return `<section class="main main--welcome">
-        ${title}
-        ${button}
-        ${rules}
+        <section class="logo" title="Угадай мелодию">
+            <h1>Угадай мелодию</h1>
+        </section>
+        <button class="main-play">Начать игру</button>
+        <h2 class="title main-title">Правила игры</h2>
+        <p class="text main-text">
+            Правила просты&nbsp;— за&nbsp;2 минуты дать
+            максимальное количество правильных ответов.<br>
+            На&nbsp;каждую мелодию всего 3 варианта ответа.<br>
+            Удачи!
+        </p>
       </section>`;
   }
 
@@ -31,7 +28,7 @@ class WelcomeView extends AbstractView {
   }
 
   _onClick() {
-    Engine.startGame();
+    Application.showGame();
   }
 
   clearHandlers() {

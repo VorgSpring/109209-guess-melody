@@ -1,7 +1,10 @@
+import questionsData from './questions';
+
 export const initialGame = {
   lives: 3,
   gameTime: 0,
-  currentAnswers: 0
+  correctAnswers: 0,
+  currentQuestion: 0
 };
 
 export const setLives = (game, value) => {
@@ -30,6 +33,28 @@ export const setCorrectAnswers = (game, value) => {
   }
 
   return Object.assign({}, game, {
-    currentAnswers: value
+    correctAnswers: value
   });
+};
+
+export const setCurrentQuestion = (game, value) => {
+  if (value < 0 || value > 10) {
+    throw new RangeError('Question can not be more than 10 and less than 0');
+  }
+
+  return Object.assign({}, game, {
+    currentQuestion: value
+  });
+};
+
+export const hasQuestion = (numberOfQuestion) => {
+  return typeof questionsData[numberOfQuestion] !== 'undefined';
+};
+
+export const getQuestion = (numberOfQuestion) => {
+  if (!hasQuestion(numberOfQuestion)) {
+    throw new RangeError('This game has no this question');
+  }
+
+  return questionsData[numberOfQuestion];
 };

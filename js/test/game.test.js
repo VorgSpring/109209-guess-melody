@@ -34,7 +34,7 @@ describe('Test game module', () => {
       assert.throws(() => setCorrectAnswers(obj, 11));
     });
     it('Answers can not be changed', () => {
-      assert.equal(setCorrectAnswers(obj, 10).currentAnswers, 10);
+      assert.equal(setCorrectAnswers(obj, 10).correctAnswers, 10);
     });
   });
 });

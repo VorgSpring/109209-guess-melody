@@ -1,9 +1,55 @@
 .player-wrapper {
   animation: fadein 1000ms ease-out;
   animation-iteration-count: 1;
-  background: url("../img/player-background.png") no-repeat 0 100%;
-  background-size: cover;
   margin-right: 20px;
+}
+
+
+.player {
+  position: relative;
+}
+
+
+.player-track {
+  background: url("/img/player-background.png") no-repeat 0 100%;
+  background-size: cover;
+  height: 53px;
+  left: 50px;
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+
+
+.player--no-controls .player-track {
+  left: 0;
+}
+
+
+.player-status {
+  background: rgba(0, 0, 0, 0.3);
+  bottom: 0;
+  left: 0;
+  position: absolute;
+  top: 0;
+}
+
+
+.player-control {
+  background: url("/img/icon-player-controls-sprite.png") no-repeat 0 0;
+  border: 0;
+  text-indent: -100em;
+  height: 53px;
+  width: 39px;
+}
+
+
+.player--is-playing .player-control {
+  background-position: 0 -53px;
+}
+
+.player--no-controls .player-control {
+  display: none;
 }
 
 

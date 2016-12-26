@@ -4,6 +4,7 @@ import player from 'elements/player';
 class ArtistView extends AbstractView {
   constructor(content) {
     super(content);
+    this.player = null;
   }
 
   getMarkup() {
@@ -36,12 +37,12 @@ class ArtistView extends AbstractView {
 
   bindHandlers() {
     const playerWrapper = this.element.querySelector('.player-wrapper');
-    const deletePlayer = player(playerWrapper, this.content.src, true, false);
+    this.player = player(playerWrapper, this.content.src, true, false);
     const mainWrap = this.element.querySelector('.main-list');
-    super._addEvent(mainWrap, 'change', this._onChange.bind(this, deletePlayer));
+    super._addEvent(mainWrap, 'change', this._onChange.bind(this));
   }
 
-  _onChange(deletePlayer) {
+  _onChange() {
     let radioChecked = this.element.querySelectorAll('input[type="radio"]:checked');
     if (radioChecked.length) {
       const index = radioChecked[0].dataset.index;
@@ -53,7 +54,7 @@ class ArtistView extends AbstractView {
           correct
         }
       });
-      deletePlayer();
+      this.player();
       document.dispatchEvent(onAnswerEvent);
     }
   }

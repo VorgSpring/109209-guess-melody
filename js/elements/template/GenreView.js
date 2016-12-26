@@ -4,6 +4,7 @@ import player from 'elements/player';
 class GenreView extends AbstractView {
   constructor(content) {
     super(content);
+    this.players = [];
   }
 
   getMarkup() {
@@ -30,14 +31,13 @@ class GenreView extends AbstractView {
   }
 
   bindHandlers() {
-    const deletePlayers = [];
     this.content.answers.forEach((item, number) => {
       const playerWrapper = this.element.querySelectorAll('.player-wrapper')[number];
-      deletePlayers.push(player(playerWrapper, item.src));
+      this.players.push(player(playerWrapper, item.src));
     });
     const form = this.element.querySelector('.genre');
     super._addEvent(form, 'change', this._onChange);
-    super._addEvent(form, 'submit', this._onSubmit.bind(this, deletePlayers));
+    super._addEvent(form, 'submit', this._onSubmit.bind(this));
   }
 
   _onChange() {
@@ -46,7 +46,7 @@ class GenreView extends AbstractView {
     formButton.disabled = !checkboxsChecked.length;
   }
 
-  _onSubmit(deletePlayers, event) {
+  _onSubmit(event) {
     event.preventDefault();
     let checkboxs = this.element.querySelectorAll('input[type="checkbox"]:checked');
     let correct = true;
@@ -72,8 +72,8 @@ class GenreView extends AbstractView {
         correct
       }
     });
-    deletePlayers.forEach((deletePlayer) => {
-      deletePlayer();
+    this.players.forEach((player) => {
+      player();
     });
     document.dispatchEvent(onAnswerEvent);
   }

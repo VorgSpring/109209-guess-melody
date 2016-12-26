@@ -29,7 +29,7 @@ const redrawCircle = (circle, radius, animation) => {
 };
 
 
-const addLeadingZero = val => val < 10 ? `0${val}` : val;
+const addLeadingZero = (val) => val < 10 ? `0${val}` : val;
 
 
 const redrawTimer = (timer, animation) => {

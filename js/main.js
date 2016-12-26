@@ -10,14 +10,13 @@ const status = (response) => {
   }
 };
 
-
 window.fetch('https://intensive-ecmascript-server-nnpnvhhedl.now.sh/guess-melody/questions').
-then(status).
-then((response) => response.json()).
-then((data) => {
-  Application.data = data;
-  Application.showWelcome();
-}).
-catch(() => {
-  throw new RangeError('Error loading data')
-});
+    then(status).
+    then((response) => response.json()).
+    then((data) => {
+      Application.data = data;
+      Application.showWelcome();
+    }).
+    catch(() => {
+      throw new RangeError('Error loading data');
+    });

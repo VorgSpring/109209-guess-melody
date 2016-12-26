@@ -62,8 +62,6 @@ class GamePresenter {
   }
 }
 
-
-
 export default (data) => {
   const newGame = new GamePresenter(new Game(data));
   newGame.restartGame();

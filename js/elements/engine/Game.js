@@ -75,8 +75,4 @@ export default class Game {
       comparison: comparison
     };
   }
-
-  restart() {
-    this._state = initialGame;
-  }
 }

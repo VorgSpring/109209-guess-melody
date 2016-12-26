@@ -43,14 +43,6 @@ class GamePresenter {
     }
   }
 
-  restartGame() {
-    this.game.restart();
-    // если остался анимированный таймер, то удаляем его
-    if (document.querySelector('.timer-container')) {
-      imageTimer.deleteTimer();
-    }
-  }
-
   _endGame(flag) {
     // если нужно удалить анимацию таймера
     // оставляем анимацию только в том случае, если закончилось время игры
@@ -66,6 +58,5 @@ class GamePresenter {
 
 export default (data) => {
   const newGame = new GamePresenter(new Game(data));
-  //newGame.restartGame();
   return newGame.startGame();
 };

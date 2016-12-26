@@ -72,8 +72,8 @@ class GenreView extends AbstractView {
         correct
       }
     });
-    this.players.forEach((player) => {
-      player();
+    this.players.forEach((item) => {
+      item();
     });
     document.dispatchEvent(onAnswerEvent);
   }

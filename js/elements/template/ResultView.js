@@ -21,11 +21,12 @@ class ResultView extends AbstractView {
 
   bindHandlers() {
     let buttonReset = this.element.querySelector('.main-replay');
-    super._addEvent(buttonReset, 'click', this._onClick);
+    super._addEvent(buttonReset, 'click', this._onClick.bind(this));
   }
 
   _onClick() {
     Application.showWelcome();
+    this.clearHandlers();
   }
 
   clearHandlers() {

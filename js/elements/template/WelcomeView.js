@@ -24,11 +24,12 @@ class WelcomeView extends AbstractView {
 
   bindHandlers() {
     let buttonPlay = this.element.querySelector('.main-play');
-    super._addEvent(buttonPlay, 'click', this._onClick);
+    super._addEvent(buttonPlay, 'click', this._onClick.bind(this));
   }
 
   _onClick() {
     Application.showGame();
+    this.clearHandlers();
   }
 
   clearHandlers() {

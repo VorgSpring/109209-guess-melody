@@ -7,7 +7,8 @@ import render from 'elements/engine/render';
 class GamePresenter {
   constructor(newGame) {
     this.game = newGame;
-    document.addEventListener('onAnswer', this.nextQuestion.bind(this));
+    this.onAnswer = this.nextQuestion.bind(this);
+    document.addEventListener('onAnswer', this.onAnswer);
   }
 
   startGame() {
@@ -57,6 +58,7 @@ class GamePresenter {
       imageTimer.deleteTimer();
     }
     let result = this.game.getResultGame();
+    document.removeEventListener('onAnswer', this.onAnswer);
     // отрисовываем страницу
     Application.showStats(result);
   }
@@ -64,6 +66,6 @@ class GamePresenter {
 
 export default (data) => {
   const newGame = new GamePresenter(new Game(data));
-  newGame.restartGame();
+  //newGame.restartGame();
   return newGame.startGame();
 };

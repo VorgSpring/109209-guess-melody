@@ -56,6 +56,7 @@ class ArtistView extends AbstractView {
       });
       this.player();
       document.dispatchEvent(onAnswerEvent);
+      this.clearHandlers();
     }
   }
 

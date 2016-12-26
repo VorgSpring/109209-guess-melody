@@ -76,6 +76,7 @@ class GenreView extends AbstractView {
       item();
     });
     document.dispatchEvent(onAnswerEvent);
+    this.clearHandlers();
   }
 
   clearHandlers() {

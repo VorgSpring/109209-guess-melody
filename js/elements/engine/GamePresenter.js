@@ -1,26 +1,18 @@
 import imageTimer from 'elements/timer/render';
-import artistModule from 'elements/template/ArtistView';
-import genreModule from 'elements/template/GenreView';
-import game from 'elements/engine/Game';
+import startTimer from 'elements/timer/timer';
+import Game from 'elements/engine/Game';
 import Application from 'elements/engine/Application';
 import render from 'elements/engine/render';
 
 class GamePresenter {
-  constructor(newGame = game) {
+  constructor(newGame) {
     this.game = newGame;
-    this.screens = {
-      artist: artistModule,
-      genre: genreModule,
-    };
-
-    document.addEventListener('timeLeft', this._endGame.bind(this, false));
-    document.addEventListener('secondPassed', this.game.tick.bind(this.game));
     document.addEventListener('onAnswer', this.nextQuestion.bind(this));
   }
 
   startGame() {
     imageTimer.renderTimer();
-    window.initializeCountdown();
+    startTimer(120, this.game.tick.bind(this.game), this._endGame.bind(this, false));
     return this.game.question;
   }
 
@@ -44,7 +36,7 @@ class GamePresenter {
     // если вопросов больше нет
     if (this.game.hasNextQuestion()) {
       this.game.nextQuestion();
-      render(this.game.question.type, this.game.question.content);
+      render(this.game.question);
     } else {
       this._endGame(true);
     }
@@ -70,9 +62,10 @@ class GamePresenter {
   }
 }
 
-const newGame = new GamePresenter();
 
-export default () => {
+
+export default (data) => {
+  const newGame = new GamePresenter(new Game(data));
   newGame.restartGame();
   return newGame.startGame();
 };

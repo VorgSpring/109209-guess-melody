@@ -1,4 +1,5 @@
 import AbstractView from 'elements/template/AbstractView';
+import player from 'elements/player';
 
 class GenreView extends AbstractView {
   constructor(content) {
@@ -6,7 +7,7 @@ class GenreView extends AbstractView {
   }
 
   getMarkup() {
-    const title = `<h2 class="title">${this.content.title}</h2>`;
+    const title = `<h2 class="title">${this.content.question}</h2>`;
 
     const answers = (items) => {
       return items.reduce((result, item, number) => {
@@ -29,9 +30,14 @@ class GenreView extends AbstractView {
   }
 
   bindHandlers() {
+    const deletePlayers = [];
+    this.content.answers.forEach((item, number) => {
+      const playerWrapper = this.element.querySelectorAll('.player-wrapper')[number];
+      deletePlayers.push(player(playerWrapper, item.src));
+    });
     const form = this.element.querySelector('.genre');
     super._addEvent(form, 'change', this._onChange);
-    super._addEvent(form, 'submit', this._onSubmit.bind(this));
+    super._addEvent(form, 'submit', this._onSubmit.bind(this, deletePlayers));
   }
 
   _onChange() {
@@ -40,19 +46,19 @@ class GenreView extends AbstractView {
     formButton.disabled = !checkboxsChecked.length;
   }
 
-  _onSubmit(event) {
+  _onSubmit(deletePlayers, event) {
     event.preventDefault();
     let checkboxs = this.element.querySelectorAll('input[type="checkbox"]:checked');
     let correct = true;
     for (let checkbox of checkboxs) {
       const index = checkbox.dataset.index;
-      correct = this.content.answers[index].correct;
+      correct = this.content.answers[index].genre === this.content.answers.genre;
       if (!correct) {
         break;
       }
     }
     let correctAnswers = this.content.answers.filter((item) => {
-      return item.correct;
+      return item.genre === this.content.answers.genre;
     });
 
     if (checkboxs.length !== correctAnswers.length) {
@@ -65,6 +71,9 @@ class GenreView extends AbstractView {
       detail: {
         correct
       }
+    });
+    deletePlayers.forEach((deletePlayer) => {
+      deletePlayer();
     });
     document.dispatchEvent(onAnswerEvent);
   }

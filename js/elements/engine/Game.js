@@ -1,6 +1,5 @@
 import {initialGame, setLives, setTime,
-  setCorrectAnswers, setCurrentQuestion, hasQuestion,
-    getQuestion} from 'elements/data/gamer';
+  setCorrectAnswers, setCurrentQuestion} from 'elements/data/gamer';
 import statistics from 'elements/data/statistics';
 
 const formatTime = (time) => {
@@ -14,9 +13,10 @@ const formatTime = (time) => {
   }
 };
 
-class Game {
-  constructor(state = initialGame) {
+export default class Game {
+  constructor(data, state = initialGame) {
     this._state = state;
+    this.data = data;
   }
 
   get state() {
@@ -24,11 +24,15 @@ class Game {
   }
 
   get question() {
-    return getQuestion(this._state.currentQuestion);
+    if (!this.hasNextQuestion(this._state.currentQuestion)) {
+      throw new RangeError('This game has no this question');
+    }
+
+    return this.data[this._state.currentQuestion];
   }
 
   hasNextQuestion() {
-    return hasQuestion(this._state.currentQuestion + 1);
+    return typeof this.data[this._state.currentQuestion + 1] !== 'undefined';
   }
 
   nextQuestion() {
@@ -64,6 +68,7 @@ class Game {
     const comparison = Math.floor(((statistics.length - rank) / statistics.length) * 100);
     // возвращяем ответ
     return {
+      type: 'result',
       title: 'Вы настоящий меломан!',
       count: result.answers,
       time: formatTime(result.time),
@@ -75,5 +80,3 @@ class Game {
     this._state = initialGame;
   }
 }
-export default new Game();
-

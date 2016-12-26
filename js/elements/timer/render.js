@@ -1,4 +1,4 @@
-import timerModule from 'elements/timer/timer';
+import timerModule from 'elements/template/TimerView';
 
 const renderTimer = () => {
   let timer = timerModule();

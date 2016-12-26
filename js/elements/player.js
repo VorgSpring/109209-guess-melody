@@ -17,7 +17,7 @@ const switchState = (state, player, element) => {
     player.play();
     state.stopAnimation = animate(
         getAnimation(player.currentTime, 1000, player.duration),
-        animation => updateState(element, player));
+        (animation) => updateState(element, player));
   } else {
     player.pause();
     state.stopAnimation();
@@ -36,7 +36,7 @@ const destroyPlayer = (element, state) => {
     state.stopAnimation();
   }
 
-  player.src = null;
+  player.src = '';
   button.onclick = null;
   element.innerHTML = '';
   state = null;

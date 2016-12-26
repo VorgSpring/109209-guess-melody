@@ -1,5 +1,3 @@
-import questionsData from './questions';
-
 export const initialGame = {
   lives: 3,
   gameTime: 0,
@@ -45,16 +43,4 @@ export const setCurrentQuestion = (game, value) => {
   return Object.assign({}, game, {
     currentQuestion: value
   });
-};
-
-export const hasQuestion = (numberOfQuestion) => {
-  return typeof questionsData[numberOfQuestion] !== 'undefined';
-};
-
-export const getQuestion = (numberOfQuestion) => {
-  if (!hasQuestion(numberOfQuestion)) {
-    throw new RangeError('This game has no this question');
-  }
-
-  return questionsData[numberOfQuestion];
 };

@@ -10,9 +10,9 @@ let slides = {
   result: resultModule
 };
 
-const render = (slidesName, data) => {
+const render = (data) => {
   let mainElement = document.querySelector('.main');
-  mainElement.parentNode.replaceChild(slides[slidesName](data), mainElement);
+  mainElement.parentNode.replaceChild(slides[data.type](data), mainElement);
 };
 
 export default render;

@@ -1,17 +1,11 @@
 import Application from 'elements/engine/Application';
+import toCheckStatus from 'elements/checkStatus';
 import 'whatwg-fetch';
 
+const URL_GET_QUESTIONS = 'https://intensive-ecmascript-server-nnpnvhhedl.now.sh/guess-melody/questions';
 
-const status = (response) => {
-  if (response.status >= 200 && response.status < 300) {
-    return response;
-  } else {
-    throw new Error(`${response.status}: ${response.statusText}`);
-  }
-};
-
-window.fetch('https://intensive-ecmascript-server-nnpnvhhedl.now.sh/guess-melody/questions').
-    then(status).
+window.fetch(URL_GET_QUESTIONS).
+    then(toCheckStatus).
     then((response) => response.json()).
     then((data) => {
       Application.data = data;

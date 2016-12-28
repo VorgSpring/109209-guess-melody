@@ -3,6 +3,18 @@ import startTimer from 'elements/timer/timer';
 import Game from 'elements/engine/Game';
 import Application from 'elements/engine/Application';
 import render from 'elements/engine/render';
+import statistics from 'elements/data/statistics';
+
+const formatTime = (time) => {
+  const minutes = Math.floor(time / 60);
+  let seconds = time % 60;
+  seconds = seconds < 10 ? `0${seconds}` : seconds;
+  if (minutes === 2) {
+    return '02:00';
+  } else {
+    return `0${minutes}:${seconds}`;
+  }
+};
 
 class GamePresenter {
   constructor(newGame) {
@@ -49,10 +61,40 @@ class GamePresenter {
     if (flag) {
       imageTimer.deleteTimer();
     }
-    let result = this.game.getResultGame();
-    document.removeEventListener('onAnswer', this.onAnswer);
-    // отрисовываем страницу
-    Application.showStats(result);
+
+    const result = {
+      date: Date.now(),
+      answers: this.game.state.correctAnswers,
+      time: this.game.state.gameTime
+    };
+
+    let newStatistics = [];
+
+    statistics.getStatistics().then((data) => {
+      newStatistics = data;
+      newStatistics.push(result);
+      newStatistics.sort((a, b) => {
+        return b.answers - a.answers || a.time - b.time;
+      });
+      // узнаем на каком месте наш результат
+      const rank = newStatistics.indexOf(result) + 1;
+      const time = formatTime(result.time);
+      // высчитываем процент
+      const comparison = Math.floor(((newStatistics.length - rank) / newStatistics.length) * 100);
+      // возвращяем ответ
+      let content = {
+        type: 'result',
+        title: 'Вы настоящий меломан!',
+        stat: `За&nbsp;${time}<br>вы&nbsp;отгадали ${result.answers}&nbsp;мелодии`,
+        comparison: `Это&nbsp;лучше чем у&nbsp;${comparison}&nbsp;% игроков`
+      };
+
+      document.removeEventListener('onAnswer', this.onAnswer);
+      // отрисовываем страницу
+      Application.showStats(content);
+
+      statistics.setStatistics(result);
+    });
   }
 }
 

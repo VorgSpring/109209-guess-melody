@@ -9,8 +9,8 @@ class ResultView extends AbstractView {
   getMarkup() {
     const resultGame =
       `<h2 class="title">${this.content.title}</h2>
-      <div class="main-stat">За&nbsp;${this.content.time}<br>вы&nbsp;отгадали ${this.content.count}&nbsp;мелодии</div>
-      <span class="main-comparison">Это&nbsp;лучше чем у&nbsp;${this.content.comparison}&nbsp;% игроков</span>`;
+      <div class="main-stat">${this.content.stat}</div>
+      <span class="main-comparison">${this.content.comparison}</span>`;
 
     return `<section class="main main--result">
         <section class="logo" title="Угадай мелодию"><h1>Угадай мелодию</h1></section>
